@@ -1,27 +1,37 @@
 <template>
   <div id="app">
-    
-    <Selection
+
+    <Collections
     v-if="loaded"
     :books="books"
     :collections="collections"
+    />
+
+    <Books
+    v-if="selectedCollection"
+    :books="books"
+    :collection="selectedCollection"
+
     />
   </div>
 </template>
 
 <script>
-import Selection from './components/Selection.vue'
+import Collections from './components/Collections.vue'
+import Books from './components/Books.vue'
 
 export default {
   name: 'app',
   components: {
-    Selection
+    Collections,
+    Books
   },
   data(){
     return{
       loaded: false,
       books: null,
-      collections: null
+      collections: null,
+      selectedCollection: null
     }
   },
   methods:{
@@ -59,7 +69,7 @@ export default {
     getContent(){
       //login and go here http://www.librarything.com/api/json.php to see Key + ID
       this.$api.get('?userid=' + process.env.VUE_APP_USERID + '&key=' + process.env.VUE_APP_KEY +
-      '&max=20' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
+      '&max=200' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
       .then((response) => {
         console.log(response.data);
 
@@ -73,8 +83,8 @@ export default {
             author : bookData.author_fl,
             isbn  : bookData.ISBN,
             tags : bookData.tags,
-            collections : bookData.collections
-
+            collections : bookData.collections,
+            cover : bookData.cover
           }
         });
 
@@ -83,6 +93,10 @@ export default {
         this.loaded = true;
       })
       .catch(e => console.log(e));
+    },
+
+    selectCollection(el){
+      this.selectedCollection = el
     }
   },
   mounted(){

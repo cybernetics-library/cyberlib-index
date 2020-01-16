@@ -1,7 +1,7 @@
 <template lang="html">
 <ol>
   <h2>Collections</h2>
-  <li v-for='(c, key) in collections' :key='key'>
+  <li v-for='(c, key) in collections' :key='key' @click='select(c)'>
     {{c.name}} ({{c.books.length}})
   </li>
 </ol>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'selection',
+  name: 'Collections',
   props:{
     books:{
       type:Array,
@@ -18,6 +18,11 @@ export default {
     collections:{
       type:Array,
       required:true
+    }
+  },
+  methods:{
+    select(el){
+      this.$parent.selectCollection(el);
     }
   }
 }
