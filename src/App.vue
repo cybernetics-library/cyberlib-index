@@ -1,15 +1,21 @@
 <template>
   <div id="app">
-
+    
+    <Selection
+    v-if="loaded"
+    :books="books"
+    :collections="collections"
+    />
   </div>
 </template>
 
 <script>
+import Selection from './components/Selection.vue'
 
 export default {
   name: 'app',
   components: {
-
+    Selection
   },
   data(){
     return{
@@ -51,8 +57,9 @@ export default {
     },
 
     getContent(){
+      //login and go here http://www.librarything.com/api/json.php to see Key + ID
       this.$api.get('?userid=' + process.env.VUE_APP_USERID + '&key=' + process.env.VUE_APP_KEY +
-      '&max=3000' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
+      '&max=20' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
       .then((response) => {
         console.log(response.data);
 
