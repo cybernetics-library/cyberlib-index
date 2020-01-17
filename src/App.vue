@@ -1,13 +1,24 @@
 <template>
   <div id="app">
 
-    <p v-if="!loaded">Loading ...</p>
+    <p v-if="!loaded" class='loading'>Loading library</p>
 
-    <Collections
-    v-if="loaded"
-    :collections="collections"
-    />
+    <nav v-if="loaded">
+      <Collections
+      id='collectionpicker'
+      v-if="loaded"
+      :collections="collections"
+      />
 
+      <BookPicker
+      id='bookpicker'
+      v-if="loaded"
+      />
+
+      <div>
+        <p  @click="print()">Print</p>
+      </div>
+    </nav>
     <Books
     v-if="selectedCollection"
     :collection="selectedCollection"
@@ -18,12 +29,15 @@
 
 <script>
 import Collections from './components/Collections.vue'
+import BookPicker from './components/Bookpicker.vue'
+
 import Books from './components/Books.vue'
 
 export default {
   name: 'app',
   components: {
     Collections,
+    BookPicker,
     Books
   },
   data(){
@@ -43,7 +57,9 @@ export default {
     ]
   },
   methods:{
-
+    print(){
+      window.print();
+    },
     sortCollections(){
 
       const collections = {}
@@ -79,7 +95,7 @@ export default {
       this.$api.get('?userid=' + process.env.VUE_APP_USERID + '&key=' + process.env.VUE_APP_KEY +
       '&max=100' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
 
         var b = [];
 
@@ -158,6 +174,44 @@ a:hover{
   html, body {
     width: 297mm;
     height: 210mm;
+  }
+  nav{
+    display: none !important;
+  }
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding:5mm;
+}
+
+.loading{
+  color:white;
+  /* font-size: 200%; */
+  /* text-align: center; */
+  margin: 5mm;
+}
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;
+  animation: ellipsis steps(4,end) 900ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;
   }
 }
 
