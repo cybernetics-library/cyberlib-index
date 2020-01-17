@@ -48,6 +48,7 @@ li{
   list-style-type: none;
 }
 ol{
+  /* background-color: black; */
   width: 100%;
   display: flex;
   flex-wrap: wrap;

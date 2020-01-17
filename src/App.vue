@@ -124,6 +124,16 @@ export default {
 
 <style>
 @import url("./assets/css/reset.css");
+
+body{
+  background-color: black;
+
+}
+
+html{
+  /* font-family: 'IBM Plex Mono' */
+}
+
 @page {
   /* size: A4 landscape; */
   margin: 0;

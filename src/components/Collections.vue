@@ -27,6 +27,11 @@ export default {
 
 <style lang="css" scoped>
 
+ol{
+  background-color: white;
+  padding: 5mm;
+}
+
 @media print {
   ol{display: none}
 }
