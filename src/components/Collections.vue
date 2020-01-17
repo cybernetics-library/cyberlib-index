@@ -29,4 +29,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+@media print {
+  ol{display: none}
+}
+
 </style>
