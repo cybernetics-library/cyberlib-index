@@ -14,6 +14,14 @@
 
       <span>Published</span>
       <h2>{{bookData.publication_date}}</h2>
+
+      <div class='tags' v-if='bookData.tags'>
+        <span>Tags</span>
+        <span class='tag' v-for='(t, key) in bookData.tags' :key='key'>{{t}}</span>
+
+      </div>
+
+      <span class='bottom'>Please do not remove this slip from book</span>
     </div>
   </div>
 </template>
@@ -39,19 +47,38 @@ export default {
 
 h2{
   font-size: 14pt;
-  margin: 5pt 0;
   padding-right: 0.5pt;
 }
 span{
   font-size: 8pt;
+  margin: 8pt 0 4pt;
+  display: block;
 }
 
 .qr{
   margin-bottom: 5pt;
 }
+
+.tag{
+  font-size: 8pt;
+  display: inline-block;
+  /* border-bottom: 0.1pt solid black; */
+  /* text-decoration: underline; */
+  margin: 0 5px 5px 0;
+}
+
+.tags{
+  padding-right: 5mm;
+  width: 100%;
+}
+
+.bottom{
+  position: absolute;
+  bottom:5mm;
+}
 .bookmark{
   position: relative;
-  /* background-color: grey; */
+  background-color: white;
   border: 0.25pt solid black;
   box-sizing: border-box;
   width: 65mm;
