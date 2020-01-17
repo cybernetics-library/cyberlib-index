@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class='bookmark outer' :id='bookData.book_id'>
-    <div class='inner'>
+  <div class='bookmark outer' :id='bookData.book_id' v-bind:style="{backgroundImage: 'url(' + bookData.cover + ')'}">
+    <div class='inner' >
       <qrcode-vue class='qr' :value="bookData.cyliburl"></qrcode-vue>
       <!-- <img :src='bookData.cover' /> -->
       <span>CYLIB ID</span>
@@ -22,7 +22,6 @@
       </div>
 
       <!-- <span>ISBN {{bookData.isbn}}</span> -->
-
 
       <span class='bottom'>Please do not remove this slip from book</span>
     </div>
@@ -60,6 +59,7 @@ span{
 
 .qr{
   margin-bottom: 5pt;
+
 }
 
 .tag{
@@ -89,8 +89,21 @@ span{
   margin: 5mm 4mm 25mm;
 
 }
+.outer{
+  background-image: none ;
+}
+.outer:hover{
+  background-image: none !important;
+}
+
+.outer:hover .inner{
+  /* opacity: 1; */
+}
+
 .inner{
   padding:5mm;
+  mix-blend-mode: multiply;
+  /* opacity: 0; */
 }
 
 
