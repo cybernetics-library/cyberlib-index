@@ -131,7 +131,10 @@ body{
 }
 
 html{
-  /* font-family: 'IBM Plex Mono' */
+  /* font-family: 'IBM Plex Mono'; */
+  /* line-height: 2; */
+
+  -webkit-font-smoothing:antialiased;
 }
 
 a{
@@ -157,4 +160,6 @@ a:hover{
     height: 210mm;
   }
 }
+
+
 </style>

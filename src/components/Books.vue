@@ -1,9 +1,9 @@
 <template lang="html">
 <ol>
   <li v-for='(b, key) in selectBooks' :key='key'>
-    <Bookmark
-      :bookData='b[0]'
-    />
+      <Bookmark
+        :bookData='b[0]'
+      />
   </li>
 </ol>
 </template>
@@ -53,4 +53,6 @@ ol{
   display: flex;
   flex-wrap: wrap;
 }
+
+
 </style>

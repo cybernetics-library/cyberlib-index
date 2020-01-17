@@ -151,6 +151,6 @@ span{
 
 }
 img{
-  max-width: 100px;
+  /* max-width: 300mm; */
 }
 </style>
