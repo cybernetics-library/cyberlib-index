@@ -84,7 +84,8 @@ export default {
             isbn  : bookData.ISBN,
             tags : bookData.tags,
             collections : bookData.collections,
-            cover : bookData.cover
+            cover : bookData.cover,
+            publication_date : bookData.publicationdate
           }
         });
 
@@ -106,6 +107,6 @@ export default {
 </script>
 
 <style>
-
+@import url("./assets/css/reset.css");
 
 </style>

@@ -2,15 +2,21 @@
 <ol>
   <h2>Books</h2>
   <li v-for='(b, key) in selectBooks' :key='key'>
-    <img :src='b[0].cover' />
-    {{b[0].title}}
+    <Bookmark
+      :bookData='b[0]'
+    />
   </li>
 </ol>
 </template>
 
 <script>
+import Bookmark from './Bookmark.vue'
+
 export default {
   name: 'Books',
+  components:{
+    Bookmark
+  },
   props:{
     books:{
       type:Array,
@@ -40,4 +46,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+li{
+  list-style-type: none;
+}
 </style>
