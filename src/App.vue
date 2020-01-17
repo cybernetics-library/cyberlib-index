@@ -13,7 +13,6 @@
     :collection="selectedCollection"
     />
 
-
   </div>
 </template>
 
@@ -35,6 +34,13 @@ export default {
       collections: null,
       selectedCollection: null
     }
+  },
+  metaInfo: {
+    title: 'Cybernetics Library Bookmark Generator',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
   },
   methods:{
 
@@ -118,5 +124,15 @@ export default {
 
 <style>
 @import url("./assets/css/reset.css");
-
+@page {
+  /* size: A4 landscape; */
+  margin: 0;
+  padding:0;
+}
+@media print {
+  html, body {
+    width: 297mm;
+    height: 210mm;
+  }
+}
 </style>

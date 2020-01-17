@@ -3,10 +3,18 @@ import App from './App.vue'
 import axios from 'axios'
 import Vuex from 'vuex'
 import { store } from './store'
+import VueMeta from 'vue-meta'
+
+
 
 require('dotenv').config()
 
 Vue.config.productionTip = false
+
+Vue.use(VueMeta, {
+  // optional pluginOptions
+  refreshOnceOnNavigation: true
+})
 
 Vue.use({
     install (Vue) {
