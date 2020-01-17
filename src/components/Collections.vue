@@ -1,8 +1,8 @@
 <template lang="html">
 <ol>
-  <h2>Collections</h2>
+  <h2>Choose a collection</h2><br>
   <li v-for='(c, key) in collections' :key='key' @click='select(c)'>
-    {{c.name}} ({{c.books.length}})
+    <a href='#'>{{c.name}} ({{c.books.length}})</a>
   </li>
 </ol>
 </template>

@@ -79,7 +79,7 @@ export default {
       this.$api.get('?userid=' + process.env.VUE_APP_USERID + '&key=' + process.env.VUE_APP_KEY +
       '&max=100' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
 
         var b = [];
 
@@ -132,6 +132,18 @@ body{
 
 html{
   /* font-family: 'IBM Plex Mono' */
+}
+
+a{
+  color:inherit;
+  text-decoration: none;
+}
+a:visited{
+  color:inherit;
+}
+
+a:hover{
+  text-decoration: underline;
 }
 
 @page {

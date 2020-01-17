@@ -21,6 +21,9 @@
 
       </div>
 
+      <!-- <span>ISBN {{bookData.isbn}}</span> -->
+
+
       <span class='bottom'>Please do not remove this slip from book</span>
     </div>
   </div>
@@ -79,7 +82,7 @@ span{
 .bookmark{
   position: relative;
   background-color: white;
-  border: 0.25pt solid black;
+  /* border: 0.25pt solid black; */
   box-sizing: border-box;
   width: 65mm;
   height: 180mm;
