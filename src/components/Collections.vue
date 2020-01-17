@@ -1,7 +1,7 @@
 <template lang="html">
 <ol>
   <h2>Choose a collection</h2><br>
-  <li v-for='(c, key) in collections' :key='key' >
+  <li v-for='(c, key) in collections' :key='key' :class="{'active': currentCollection==c, '': !currentCollection==c}">
     <a href='#' @click='select(c)'>{{c.name}} ({{c.books.length}})</a>
   </li>
 </ol>
@@ -16,10 +16,19 @@ export default {
       required:true
     }
   },
+  data(){
+    return{
+      currentCollection:{}
+    }
+  },
   methods:{
     select(el){
+      this.currentCollection = el;
       this.$parent.selectCollection(el);
     }
+  },
+  computed:{
+
   }
 }
 </script>
@@ -31,4 +40,7 @@ ol{
   /* padding: 5mm; */
 }
 
+.active{
+  color:red;
+}
 </style>
