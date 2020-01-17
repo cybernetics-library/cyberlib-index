@@ -1,12 +1,20 @@
 <template lang="html">
-  <div>
-    <qrcode-vue :value="bookData.cyliburl"></qrcode-vue>
-    <img :src='bookData.cover' />
-    {{bookData.book_id}}
-    {{bookData.title}},
-    {{bookData.author}},
-    {{bookData.publication_date}}
-    <div id='placeHolder'></div>
+  <div class='bookmark outer' :id='bookData.book_id'>
+    <div class='inner'>
+      <qrcode-vue class='qr' :value="bookData.cyliburl"></qrcode-vue>
+      <!-- <img :src='bookData.cover' /> -->
+      <span>CYLIB ID</span>
+      <h2>{{bookData.book_id}}</h2>
+
+      <span>Title</span>
+      <h2>{{bookData.title}}</h2>
+
+      <span>Author(s)</span>
+      <h2>{{bookData.author}}</h2>
+
+      <span>Published</span>
+      <h2>{{bookData.publication_date}}</h2>
+    </div>
   </div>
 </template>
 
@@ -28,6 +36,90 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+h2{
+  font-size: 14pt;
+  margin: 5pt 0;
+  padding-right: 0.5pt;
+}
+span{
+  font-size: 8pt;
+}
+
+.qr{
+  margin-bottom: 5pt;
+}
+.bookmark{
+  position: relative;
+  /* background-color: grey; */
+  border: 0.25pt solid black;
+  box-sizing: border-box;
+  width: 65mm;
+  height: 180mm;
+  margin: 5mm 4mm 25mm;
+
+}
+.inner{
+  padding:5mm;
+}
+
+
+@media print {
+
+  .bookmark{
+    border: none;
+  }
+
+
+  .outer::before{
+    position: absolute;
+    display: block;
+    content:' ';
+    top:-3mm;
+    left:-3mm;
+    height: 3mm;
+    width: 3mm;
+    border-right: 0.25pt solid black;
+    border-bottom: 0.25pt solid black;
+  }
+
+  .outer::after{
+    position: absolute;
+    display: block;
+    content:' ';
+    bottom:-3mm;
+    right:-3mm;
+    height: 3mm;
+    width: 3mm;
+    border-left: 0.25pt solid black;
+    border-top: 0.25pt solid black;
+  }
+
+  .inner::before{
+    position: absolute;
+    display: block;
+    content:' ';
+    top:-3mm;
+    right:-3mm;
+    height: 3mm;
+    width: 3mm;
+    border-left: 0.25pt solid black;
+    border-bottom: 0.25pt solid black;
+  }
+
+  .inner::after{
+    position: absolute;
+    display: block;
+    content:' ';
+    bottom:-3mm;
+    left:-3mm;
+    height: 3mm;
+    width: 3mm;
+    border-right: 0.25pt solid black;
+    border-top: 0.25pt solid black;
+  }
+
+}
 img{
   max-width: 100px;
 }

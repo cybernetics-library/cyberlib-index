@@ -1,7 +1,5 @@
 <template lang="html">
 <ol>
-
-  <h2>Books</h2>
   <li v-for='(b, key) in selectBooks' :key='key'>
     <Bookmark
       :bookData='b[0]'
@@ -43,7 +41,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h2{
+  width: 100%;
+}
 li{
   list-style-type: none;
+}
+ol{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
