@@ -85,7 +85,8 @@ export default {
             tags : bookData.tags,
             collections : bookData.collections,
             cover : bookData.cover,
-            publication_date : bookData.publicationdate
+            publication_date : bookData.publicationdate,
+            cyliburl : 'https://library.cybernetics.social/checkout/' + book_id
           }
         });
 
