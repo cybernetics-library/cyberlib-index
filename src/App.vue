@@ -1,18 +1,19 @@
 <template>
   <div id="app">
 
+    <p v-if="!loaded">Loading ...</p>
+
     <Collections
     v-if="loaded"
-    :books="books"
     :collections="collections"
     />
 
     <Books
     v-if="selectedCollection"
-    :books="books"
     :collection="selectedCollection"
-
     />
+
+
   </div>
 </template>
 
@@ -29,7 +30,8 @@ export default {
   data(){
     return{
       loaded: false,
-      books: null,
+      booksLoading: false,
+      booksLoaded: false,
       collections: null,
       selectedCollection: null
     }
@@ -40,11 +42,11 @@ export default {
 
       const collections = {}
 
-      for (var i = 0; i < this.books.length; i++) {
-        this.books[i]
+      for (var i = 0; i < this.$store.getters.getBooks.length; i++) {
+        this.$store.getters.getBooks[i]
       }
 
-      this.books.forEach(function(book){
+      this.$store.getters.getBooks.forEach(function(book){
         if (book.collections){
           Object.entries(book.collections).forEach(function([collectionKey, collectionName]){
             // console.log(i);
@@ -69,11 +71,13 @@ export default {
     getContent(){
       //login and go here http://www.librarything.com/api/json.php to see Key + ID
       this.$api.get('?userid=' + process.env.VUE_APP_USERID + '&key=' + process.env.VUE_APP_KEY +
-      '&max=200' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
+      '&max=100' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
 
-        this.books = Object.entries(response.data.books).map(([
+        var b = [];
+
+        b = Object.entries(response.data.books).map(([
           book_id, bookData
         ]) => {
           return {
@@ -90,15 +94,20 @@ export default {
           }
         });
 
+        // console.log(b);
+
+        this.$store.dispatch('setBooks', b);
+
         this.sortCollections();
 
         this.loaded = true;
       })
       .catch(e => console.log(e));
     },
-
     selectCollection(el){
-      this.selectedCollection = el
+      this.booksLoaded = true;
+
+      this.selectedCollection = el;
     }
   },
   mounted(){

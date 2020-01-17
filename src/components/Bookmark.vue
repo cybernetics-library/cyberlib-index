@@ -11,8 +11,7 @@
 </template>
 
 <script>
-import QrcodeVue from 'qrcode.vue'
-
+import QrcodeVue from 'qrcode.vue';
 
 export default {
   name: 'bookmark',
@@ -24,9 +23,6 @@ export default {
       type:Object,
       required:true
     }
-  },
-  created(){
-
   }
 }
 </script>

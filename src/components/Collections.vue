@@ -11,10 +11,7 @@
 export default {
   name: 'Collections',
   props:{
-    books:{
-      type:Array,
-      required:true
-    },
+
     collections:{
       type:Array,
       required:true

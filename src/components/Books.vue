@@ -1,5 +1,6 @@
 <template lang="html">
 <ol>
+
   <h2>Books</h2>
   <li v-for='(b, key) in selectBooks' :key='key'>
     <Bookmark
@@ -18,10 +19,6 @@ export default {
     Bookmark
   },
   props:{
-    books:{
-      type:Array,
-      required:true
-    },
     collection:{
       type:Object,
       required:true
@@ -36,12 +33,12 @@ export default {
       const b = []
 
       for (var i = 0; i < this.collection.books.length; i++) {
-        b.push(this.books.filter(book => book.book_id == this.collection.books[i]))
+        b.push(this.$store.getters.getBooks.filter(book => book.book_id == this.collection.books[i]))
       }
 
-      return b
+      return b;
     }
-  }
+  },
 }
 </script>
 
