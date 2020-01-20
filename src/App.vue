@@ -15,7 +15,7 @@
       v-if="loaded"
       />
 
-      <div>
+      <div class='printbtn'>
         <p  @click="print()">Print</p>
       </div>
     </nav>
@@ -96,7 +96,7 @@ export default {
     getContent(){
       //login and go here http://www.librarything.com/api/json.php to see Key + ID
       this.$api.get('?userid=' + process.env.VUE_APP_USERID + '&key=' + process.env.VUE_APP_KEY +
-      '&max=100' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
+      '&max=3000' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
       .then((response) => {
         // console.log(response.data);
 
@@ -193,6 +193,22 @@ nav{
   justify-content: space-between;
   background-color: white;
   padding:5mm;
+}
+
+.printbtn{
+  position: fixed;
+  top:0;
+  right:0;
+  background-color: white;
+  padding: 5mm;
+  /* mix-blend-mode: difference; */
+  z-index: 99;
+}
+
+.printbtn:hover{
+  color: white;
+  background-color: black;
+  cursor: pointer;
 }
 
 .loading{
