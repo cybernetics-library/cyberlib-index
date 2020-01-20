@@ -3,7 +3,9 @@
   <h2>Or find a book</h2><br>
   <input v-model='search' placeholder="Enter a book title" />
   <ul v-if='search'>
-    <li v-for="(i, key) in filteredList" :key='key'> {{i.title}} </li>
+    <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i, '': !currentBook==i}">
+      <a href='#' @click='select(i)'> {{i.title}} </a>
+    </li>
   </ul>
 </ol>
 </template>
@@ -15,11 +17,15 @@ export default {
   },
   data(){
     return{
-      search:''
+      search:'',
+      currentBook:''
     }
   },
   methods:{
-
+    select(el){
+      this.currentBook = el;
+      this.$parent.selectBook(el);
+    }
   },
   computed:{
     filteredList() {
@@ -38,6 +44,8 @@ ol{
   /* padding: 5mm; */
   width: 50%;
 }
-
+.active{
+  color:red;
+}
 
 </style>

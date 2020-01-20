@@ -22,6 +22,8 @@
     <Books
     v-if="selectedCollection"
     :collection="selectedCollection"
+    :book="selectedBook"
+
     />
 
   </div>
@@ -46,7 +48,8 @@ export default {
       booksLoading: false,
       booksLoaded: false,
       collections: null,
-      selectedCollection: null
+      selectedCollection: null,
+      selectedBook: null,
     }
   },
   metaInfo: {
@@ -128,8 +131,13 @@ export default {
     },
     selectCollection(el){
       this.booksLoaded = true;
-
+      this.selectedBook = null;
       this.selectedCollection = el;
+
+    },
+    selectBook(el){
+      this.booksLoaded = true;
+      this.selectedBook = el;
     }
   },
   mounted(){

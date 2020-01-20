@@ -1,6 +1,13 @@
 <template lang="html">
 <ol>
-  <li v-for='(b, key) in selectBooks' :key='key'>
+
+  <li v-if='book'>
+    <Bookmark
+      :bookData='book'
+    />
+  </li>
+
+  <li v-else v-for='(b, key) in selectBooks' :key='key'>
       <Bookmark
         :bookData='b[0]'
       />
@@ -20,6 +27,10 @@ export default {
     collection:{
       type:Object,
       required:true
+    },
+    book:{
+      type:Object,
+      required:false
     }
   },
   data(){
