@@ -182,6 +182,7 @@ a:hover{
   html, body {
     width: 297mm;
     height: 210mm;
+    background-color: white;
   }
   nav{
     display: none !important;
