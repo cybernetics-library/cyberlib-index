@@ -141,7 +141,24 @@ export default {
     }
   },
   mounted(){
-    this.getContent();
+
+    console.log(this.$gapi)
+    this.$gapi.isSignedIn()
+    .then(result => {
+      console.log(result ? 'Signed in' : 'Signed out')
+    })
+
+    this.$gapi._libraryInit('client', { discoveryDocs: [ 'https://sheets.googleapis.com/$discovery/rest?version=v4' ]})
+    .then(client => {
+      return gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '1vt1SlAfqV5cvWFVBFslCiNl5xyocLi9U31NuafCLw6g',
+        range: 'Books!A2:AW',
+      }).then(response => {
+        console.log(response.result)
+      })
+    })
+
+    // this.getContent();
   }
 }
 </script>

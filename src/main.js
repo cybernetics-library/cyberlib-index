@@ -5,7 +5,15 @@ import Vuex from 'vuex'
 import { store } from './store'
 import VueMeta from 'vue-meta'
 
+import VueGoogleApi from 'vue-google-api'
 
+const config = {
+  apiKey: process.env.VUE_APP_GOOGLEAPI_KEY,
+  clientId: process.env.VUE_APP_GOOGLEAPI_ID,
+  scope: "https://www.googleapis.com/auth/spreadsheets.readonly",
+  discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"]
+}
+Vue.use(VueGoogleApi, config)
 
 require('dotenv').config()
 
