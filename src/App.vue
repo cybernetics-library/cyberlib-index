@@ -4,11 +4,6 @@
     <p v-if="!loaded" class='loading'>Loading library</p>
 
     <nav v-if="loaded">
-      <Collections
-      id='collectionpicker'
-      v-if="loaded"
-      :collections="collections"
-      />
 
       <BookPicker
       id='bookpicker'
@@ -20,24 +15,20 @@
       </div>
     </nav>
     <Books
-    :collection="selectedCollection"
-    :book="selectedBook"
-
+      :filter='filter'
     />
 
   </div>
 </template>
 
 <script>
-import Collections from './components/Collections.vue'
-import BookPicker from './components/Bookpicker.vue'
 
+import BookPicker from './components/Bookpicker.vue'
 import Books from './components/Books.vue'
 
 export default {
   name: 'app',
   components: {
-    Collections,
     BookPicker,
     Books
   },
@@ -45,10 +36,10 @@ export default {
     return{
       loaded: false,
       booksLoading: false,
-      booksLoaded: false,
       collections: null,
       selectedCollection: null,
       selectedBook: null,
+      filter:null
     }
   },
   metaInfo: {
@@ -111,7 +102,15 @@ export default {
           if(obj.Subjects){obj.Subjects = obj.Subjects.split('|');}
           if(obj.Print_group){obj.Print_group = obj.Print_group.split(', ');}
 
-          obj.cylibURL = 'https://localhost:8000/' + obj.Book_ID;
+          obj.Cylib_URL = 'https://localhost:8000/' + obj.Book_ID;
+
+          const a = obj.Primary_Author.split(', ');
+
+          if (a[1]) {
+            obj.Author = a[1] + ' ' + a[0];
+          } else {
+            obj.Author = a[0];
+          }
 
           output.push(obj);
       }
@@ -145,14 +144,12 @@ export default {
 
     },
     selectCollection(el){
-      this.booksLoaded = true;
       this.selectedBook = null;
       this.selectedCollection = el;
 
     },
-    selectBook(el){
-      this.booksLoaded = true;
-      this.selectedBook = el;
+    updateFilter(el){
+      this.filter = el;
     }
   },
   mounted(){
