@@ -1,29 +1,27 @@
 <template lang="html">
-  <div class='bookmark outer' :id='bookData.book_id' v-bind:style="{backgroundImage: 'url(' + bookData.cover + ')'}">
+  <div class='bookmark outer' :id='bookData.Book_ID' v-bind:style="{backgroundImage: 'url(' + bookData.Cover_URL + ')'}">
     <div class='inner' >
-      <qrcode-vue class='qr' :value="bookData.cyliburl"></qrcode-vue>
-      <!-- <img :src='bookData.cover' /> -->
+      <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
       <span>CYLIB ID</span>
-      <h2>{{bookData.book_id}}</h2>
+      <h2>{{bookData.Book_ID}}</h2>
 
       <span>Title</span>
-      <h2>{{bookData.title}}</h2>
+      <h2>{{bookData.Title}}</h2>
 
       <span>Author(s)</span>
-      <h2>{{bookData.author}}</h2>
+      <h2>{{bookData.Author}}</h2>
 
       <span>Published</span>
-      <h2>{{bookData.publication_date}}</h2>
+      <h2>{{bookData.Date}}</h2>
 
-      <div class='tags' v-if='bookData.tags'>
+      <div class='tags' v-if='bookData.Tags'>
         <span>Tags</span>
-        <span class='tag' v-for='(t, key) in bookData.tags' :key='key'>{{t}}</span>
-
+        <span class='tag' v-for='(t, key) in bookData.Tags' :key='key'>{{t}}</span>
       </div>
 
-      <!-- <span>ISBN {{bookData.isbn}}</span> -->
+      <span v-if='bookData.From_Where'>From: {{bookData.From_Where}}</span>
 
-      <span class='bottom'>Please do not remove this slip from book</span>
+      <span class='bottom'>Please do not remove from this book<br>THE CYBERNETICS LIBRARY</span>
     </div>
   </div>
 </template>
@@ -52,9 +50,11 @@ h2{
   padding-right: 0.5pt;
 }
 span{
-  font-size: 8pt;
-  margin: 8pt 0 4pt;
+  font-size: 7pt;
+  letter-spacing: 0.1pt;
+  margin: 8pt 0 5pt;
   display: block;
+  font-family: 'IBM Plex mono';
 }
 
 .qr{
@@ -63,11 +63,11 @@ span{
 }
 
 .tag{
-  font-size: 8pt;
+  /* font-size: 8pt; */
   display: inline-block;
   /* border-bottom: 0.1pt solid black; */
   /* text-decoration: underline; */
-  margin: 0 5px 5px 0;
+  margin: 0 3pt 3pt 0;
 }
 
 .tags{
@@ -77,7 +77,8 @@ span{
 
 .bottom{
   position: absolute;
-  bottom:5mm;
+  bottom:4mm;
+  line-height: 1.2;
 }
 .bookmark{
   position: relative;
