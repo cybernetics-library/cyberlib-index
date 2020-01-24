@@ -6,7 +6,7 @@
   </div>
 
   <div class='nav-col'>
-    <h2>Find a book</h2><br>
+    <h2>Find a book </h2><br>
     <input v-model='search' placeholder="Enter a book title or ISBN" />
     <ul v-if='search'>
       <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i.Book_ID, '': !currentBook==i.Book_ID  }">
@@ -25,7 +25,11 @@
   </div>
 
   <div class='nav-col'>
-    <a href='#' @click='$parent.print()'>Print bookmarks</a><br>
+    <a href='#' @click='$parent.print()'>Print bookmarks
+      <span v-if='currentBook'> ({{currentBook.length}})</span>
+      <span v-else> ({{$store.getters.getBooks.length}})</span>
+
+    </a><br><br>
 
     <a href='#' v-if='currentBook' @click='clear()'>Clear filter ×</a>
   </div>
@@ -82,23 +86,20 @@ export default {
 <style lang="css" scoped>
 
 nav{
-  /* min-width: 20%; */
-  /* max-width: 20%; */
-  /* height: 100vh; */
   display: flex;
-  /* flex-direction: column; */
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background-color: white;
   padding:5mm;
 }
 
 .nav-col{
-  width: 100%;
+  width: 50%;
   padding-right: 5mm;
+  /* text-align: center; */
 }
 
 .nav-col:last-of-type{
-  text-align: right;
+  /* text-align: right; */
 }
 
 input{

@@ -55,7 +55,6 @@ export default {
       const printGroups = {}
 
       this.$store.getters.getBooks.forEach(function(book){
-
         if (book.Print_group){
           Object.entries(book.Print_group).forEach(function([collectionKey, collectionName]){
             if (!printGroups[collectionKey]){
@@ -65,23 +64,14 @@ export default {
                 books : []
               }
             }
-
             printGroups[collectionKey].books.push(+book.Book_ID);
-
           })
         }
-
       })
-
       const payload = {
         p: printGroups
       }
-
-      // console.log(payload);
-
       this.$store.dispatch('setGroups', payload);
-
-      // this.printGroups = Object.values(payload);
     },
 
     transformData(data){
