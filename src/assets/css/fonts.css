@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Plex Mono";
+  src: url("../fonts/IBMPlexMono-Regular.woff2") format("woff2"),
+       url("../fonts/IBMPlexMono-Regular.woff") format("woff"),
+       url("../fonts/IBMPlexMono-Regular.eot") format("eot"),
+       url("../fonts/IBMPlexMono-Regular.otf") format("otf"),
+       url("../fonts/IBMPlexMono-Regular.ttf") format("ttf");
+}

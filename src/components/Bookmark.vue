@@ -44,6 +44,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+/* @import url(".../assets/css/fonts.css"); */
 
 h2{
   font-size: 14pt;
@@ -54,7 +55,7 @@ span{
   letter-spacing: 0.1pt;
   margin: 8pt 0 5pt;
   display: block;
-  font-family: 'IBM Plex mono';
+  font-family: 'Plex Mono', Courier, monospace;
 }
 
 .qr{

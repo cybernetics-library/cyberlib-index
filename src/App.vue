@@ -157,6 +157,7 @@ export default {
 
 <style>
 @import url("./assets/css/reset.css");
+@import url("./assets/css/fonts.css");
 
 body{
   background-color: black;
@@ -164,7 +165,7 @@ body{
 }
 
 html{
-  /* font-family: 'IBM Plex Mono'; */
+  font-family: 'Times New Roman', Times, Serif;
   /* line-height: 2; */
 
   -webkit-font-smoothing:antialiased;
