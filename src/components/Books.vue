@@ -1,17 +1,22 @@
 <template lang="html">
 <ol>
 
-  <!-- <li v-if='book'>
-    <Bookmark
-      :bookData='book'
-    />
-  </li> -->
+  <template v-if='filter'>
+  <li v-for='(b, key) in filter' :key='key'>
+      <Bookmark
+        :bookData='b'
+      />
+  </li>
+  </template>
 
+  <template v-else>
   <li v-for='(b, key) in this.$store.getters.getBooks' :key='key'>
       <Bookmark
         :bookData='b'
       />
   </li>
+  </template>
+  
 </ol>
 </template>
 
@@ -24,7 +29,10 @@ export default {
     Bookmark
   },
   props:{
-
+    filter:{
+      type:Array,
+      required:false
+    }
   },
   data(){
     return{
