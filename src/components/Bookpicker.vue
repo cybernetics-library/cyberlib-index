@@ -1,13 +1,26 @@
 <template lang="html">
-<ol>
-  <h2>Find a book</h2><br>
-  <input v-model='search' placeholder="Enter a book title or ISBN" />
-  <ul v-if='search'>
-    <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i, '': !currentBook==i}">
-      <a href='#' @click='select(i)'>{{i.Title}}</a>
-    </li>
-  </ul>
-</ol>
+<nav>
+
+  <div>
+    <h1>Cybernetics Library</h1>
+  </div>
+
+  <div>
+    <h2>Find a book</h2><br>
+    <input v-model='search' placeholder="Enter a book title or ISBN" />
+    <ul v-if='search'>
+      <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i, '': !currentBook==i}">
+        <a href='#' @click='select(i)'>{{i.Title}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <a href='#' @click='clear()'>Clear filter</a>
+  </div>
+
+
+</nav>
 </template>
 
 <script>
@@ -25,6 +38,11 @@ export default {
     select(el){
       this.currentBook = el;
       this.$parent.updateFilter([el]);
+    },
+    clear(){
+      this.search = '';
+      this.currentBook = null;
+      this.$parent.clearFilter();
     }
   },
   computed:{
@@ -43,6 +61,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+nav{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  padding:5mm;
+}
+
 input{
   font-size: 16px;
   padding: 1px 0;
@@ -53,13 +80,19 @@ input{
   margin-bottom: 16px;
   /* padding:5mm; */
 }
-ol{
-  /* background-color: white; */
-  /* padding: 5mm; */
-  width: 50%;
+ul{
+
 }
 .active{
   color:red;
 }
+
+@media print {
+
+  nav{
+    display: none !important;
+  }
+}
+
 
 </style>

@@ -3,17 +3,11 @@
 
     <p v-if="!loaded" class='loading'>Loading library</p>
 
-    <nav v-if="loaded">
-
-      <BookPicker
+    <BookPicker
       id='bookpicker'
       v-if="loaded"
-      />
+    />
 
-      <div class='printbtn'>
-        <p  @click="print()">Print</p>
-      </div>
-    </nav>
     <Books
       :filter='filter'
     />
@@ -150,6 +144,9 @@ export default {
     },
     updateFilter(el){
       this.filter = el;
+    },
+    clearFilter(){
+      this.filter = null;
     }
   },
   mounted(){
@@ -172,6 +169,8 @@ html{
 
   -webkit-font-smoothing:antialiased;
 }
+
+
 
 a{
   color:inherit;
@@ -196,17 +195,10 @@ a:hover{
     height: 210mm;
     background-color: white;
   }
-  nav{
-    display: none !important;
-  }
+
 }
 
-nav{
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-  padding:5mm;
-}
+
 
 .printbtn{
   position: fixed;
