@@ -11,7 +11,8 @@ const config = {
   apiKey: process.env.VUE_APP_GOOGLEAPI_KEY,
   clientId: process.env.VUE_APP_GOOGLEAPI_ID,
   scope: "https://www.googleapis.com/auth/spreadsheets.readonly",
-  discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"]
+  discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+  sheetId: '1vt1SlAfqV5cvWFVBFslCiNl5xyocLi9U31NuafCLw6g'
 }
 Vue.use(VueGoogleApi, config)
 
@@ -24,13 +25,13 @@ Vue.use(VueMeta, {
   refreshOnceOnNavigation: true
 })
 
-Vue.use({
-    install (Vue) {
-    Vue.prototype.$api = axios.create({
-      baseURL: 'https://cors-anywhere.herokuapp.com/https://www.librarything.com/api_getdata.php'
-    })
-  }
-})
+// Vue.use({
+//     install (Vue) {
+//     Vue.prototype.$api = axios.create({
+//       baseURL: 'https://cors-anywhere.herokuapp.com/https://www.librarything.com/api_getdata.php'
+//     })
+//   }
+// })
 
 new Vue({
   store,

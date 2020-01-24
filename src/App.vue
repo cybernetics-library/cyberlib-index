@@ -93,41 +93,53 @@ export default {
       this.collections = Object.values(collections);
     },
 
-    getContent(){
-      //login and go here http://www.librarything.com/api/json.php to see Key + ID
-      this.$api.get('?userid=' + process.env.VUE_APP_USERID + '&key=' + process.env.VUE_APP_KEY +
-      '&max=3000' + '&showCollections=1' + '&showTags=1' + '&responseType=json' )
-      .then((response) => {
-        // console.log(response.data);
-
-        var b = [];
-
-        b = Object.entries(response.data.books).map(([
-          book_id, bookData
-        ]) => {
-          return {
-            book_id,
-            title : bookData.title,
-            author_lf : bookData.author_lf,
-            author : bookData.author_fl,
-            isbn  : bookData.ISBN,
-            tags : bookData.tags,
-            collections : bookData.collections,
-            cover : bookData.cover,
-            publication_date : bookData.publicationdate,
-            cyliburl : 'https://library.cybernetics.social/checkout/' + book_id
-          }
-        });
-
-        // console.log(b);
-
-        this.$store.dispatch('setBooks', b);
-
-        this.sortCollections();
-
-        this.loaded = true;
+    gapiCall(){
+      // console.log(this.$gapi)
+      this.$gapi.isSignedIn()
+      .then(result => {
+        console.log(result ? 'Signed in' : 'Signed out')
       })
-      .catch(e => console.log(e));
+
+      this.$gapi._libraryInit('client', { discoveryDocs: [ 'https://sheets.googleapis.com/$discovery/rest?version=v4' ]})
+      .then(client => {
+        return gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId: this.$gapi.config.sheetId,
+          range: 'Books',
+        }).then(response => {
+          // console.log(response.result)
+
+
+          var keys = response.result.values.shift(),
+          i = 0, k = 0,
+          obj = null,
+          output = [];
+
+          for (i = 0; i < response.result.values.length; i++) {
+              obj = {};
+
+              for (k = 0; k < keys.length; k++) {
+                  obj[keys[k]] = response.result.values[i][k];
+              }
+
+              if(obj.ISBNs){obj.ISBNs = obj.ISBNs.slice(1,-1).split(', ');}
+              if(obj.ISBN){obj.ISBN = obj.ISBN.slice(1,-1);}
+              if(obj.Tags){obj.Tags = obj.Tags.split(', ');}
+              if(obj.Subjects){obj.Subjects = obj.Subjects.split('|');}
+              if(obj.Print_group){obj.Print_group = obj.Print_group.split(', ');}
+
+              output.push(obj);
+          }
+
+          console.log(output);
+
+          this.$store.dispatch('setBooks', output);
+
+          // this.sortCollections();
+
+          this.loaded = true;
+        })
+      }).catch(e => console.log(e));
+
     },
     selectCollection(el){
       this.booksLoaded = true;
@@ -141,24 +153,7 @@ export default {
     }
   },
   mounted(){
-
-    console.log(this.$gapi)
-    this.$gapi.isSignedIn()
-    .then(result => {
-      console.log(result ? 'Signed in' : 'Signed out')
-    })
-
-    this.$gapi._libraryInit('client', { discoveryDocs: [ 'https://sheets.googleapis.com/$discovery/rest?version=v4' ]})
-    .then(client => {
-      return gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId: '1vt1SlAfqV5cvWFVBFslCiNl5xyocLi9U31NuafCLw6g',
-        range: 'Books!A2:AW',
-      }).then(response => {
-        console.log(response.result)
-      })
-    })
-
-    // this.getContent();
+    this.gapiCall();
   }
 }
 </script>
