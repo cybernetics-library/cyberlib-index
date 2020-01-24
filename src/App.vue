@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-
     <p v-if="!loaded" class='loading'>Loading library</p>
+    <div class='container'>
 
-    <BookPicker
-      id='bookpicker'
-      v-if="loaded"
-    />
+      <BookPicker
+        id='bookpicker'
+        v-if="loaded"
+      />
+      <Books
+        :filter='filter'
+      />
 
-    <Books
-      :filter='filter'
-    />
+      <footer v-if="loaded">
+        The Cybernetics Library 2020 <a href='https://github.com/cybernetics-library/bookmark-generator/'>(View Source →)</a>
+      </footer>
+    </div>
 
   </div>
 </template>
@@ -130,13 +134,10 @@ export default {
           spreadsheetId: this.$gapi.config.sheetId,
           range: 'Books',
         }).then(response => {
-
+          console.log(response)
           const b = this.transformData(response.result.values);
-          // console.log(b);
           this.$store.dispatch('setBooks', b);
-
           this.sortCollections();
-
           this.loaded = true;
         })
       }).catch(e => console.log(e));
@@ -171,7 +172,7 @@ body{
 
 html{
   font-family: 'Times New Roman', Times, Serif;
-  /* line-height: 2; */
+  font-size: 14pt;
 
   -webkit-font-smoothing:antialiased;
 }
@@ -204,22 +205,8 @@ a:hover{
 
 }
 
-
-
-.printbtn{
-  position: fixed;
-  top:0;
-  right:0;
-  background-color: white;
-  padding: 5mm;
-  /* mix-blend-mode: difference; */
-  z-index: 99;
-}
-
-.printbtn:hover{
-  color: white;
-  background-color: black;
-  cursor: pointer;
+.container{
+  /* display: flex; */
 }
 
 .loading{
@@ -236,6 +223,11 @@ a:hover{
   animation: ellipsis steps(4,end) 900ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
+}
+
+footer{
+  padding: 5mm;
+  color:white;
 }
 
 @keyframes ellipsis {

@@ -1,11 +1,11 @@
 <template lang="html">
 <nav>
 
-  <div>
-    <h1>Cybernetics Library</h1><br>
+  <div class='nav-col'>
+    <h1>The Cybernetics Library</h1><br>
   </div>
 
-  <div>
+  <div class='nav-col'>
     <h2>Find a book</h2><br>
     <input v-model='search' placeholder="Enter a book title or ISBN" />
     <ul v-if='search'>
@@ -15,17 +15,19 @@
     </ul>
   </div>
 
-  <div>
-    <h2>Print group</h2><br>
+  <div class='nav-col' v-if='printGroups'>
+    <h2>Or select group</h2><br>
     <ul>
-      <li v-for="(i, key) in printGroups" :key='key' >
+      <li v-for="(i, key) in printGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
         <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
       </li>
     </ul>
   </div>
 
-  <div>
-    <a href='#' @click='clear()'>Clear filter</a>
+  <div class='nav-col'>
+    <a href='#' @click='$parent.print()'>Print bookmarks</a><br>
+
+    <a href='#' v-if='currentBook' @click='clear()'>Clear filter ×</a>
   </div>
 
 
@@ -80,23 +82,43 @@ export default {
 <style lang="css" scoped>
 
 nav{
+  /* min-width: 20%; */
+  /* max-width: 20%; */
+  /* height: 100vh; */
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   background-color: white;
   padding:5mm;
 }
 
+.nav-col{
+  width: 100%;
+  padding-right: 5mm;
+}
+
+.nav-col:last-of-type{
+  text-align: right;
+}
+
 input{
-  font-size: 16px;
+  font-size: 1rem;
   padding: 1px 0;
   font-family: Times;
-  width: 200px;
+  width: 100%;
   border:none;
-  border-bottom: 1px solid black;
   margin-bottom: 16px;
+  border-bottom: 1px solid transparent;
+
   /* padding:5mm; */
 }
+
+input:focus{
+  outline: none;
+  border-bottom: 1px solid black;
+
+}
+
 ul{
 
 }
