@@ -4,7 +4,7 @@
   <input v-model='search' placeholder="Enter a book title or ISBN" />
   <ul v-if='search'>
     <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i, '': !currentBook==i}">
-      <a href='#' @click='select(i)'>{{i.title}}</a>
+      <a href='#' @click='select(i)'>{{i.Title}}</a>
     </li>
   </ul>
 </ol>
@@ -24,17 +24,17 @@ export default {
   methods:{
     select(el){
       this.currentBook = el;
-      this.$parent.selectBook(el);
+      this.$parent.updateFilter([el]);
     }
   },
   computed:{
     filteredList() {
       return this.$store.getters.getBooks.filter(book => {
-        if (book.title.toLowerCase().includes(this.search.toLowerCase())){
-          return book.title.toLowerCase().includes(this.search.toLowerCase())
+        if (book.Title.toLowerCase().includes(this.search.toLowerCase())){
+          return book.Title.toLowerCase().includes(this.search.toLowerCase())
         }
-        if (book.isbn.includes(this.search)){
-          return book.isbn.includes(this.search)
+        if (book.ISBN.includes(this.search)){
+          return book.ISBN.includes(this.search)
         }
       })
     }
