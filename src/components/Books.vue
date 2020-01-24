@@ -4,7 +4,7 @@
   <template v-if='filter'>
   <li v-for='(b, key) in filter' :key='key'>
       <Bookmark
-        :bookData='b'
+        :bookData='findByID(b)'
       />
   </li>
   </template>
@@ -36,6 +36,11 @@ export default {
   },
   data(){
     return{
+    }
+  },
+  methods:{
+    findByID(id){
+      return this.$store.getters.getBooks.find(x => x.Book_ID === id)
     }
   },
   computed:{

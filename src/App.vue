@@ -29,8 +29,7 @@ export default {
   data(){
     return{
       loaded: false,
-      booksLoading: false,
-      collections: null,
+      printGroups: null,
       selectedCollection: null,
       selectedBook: null,
       filter:null
@@ -49,32 +48,36 @@ export default {
     },
     sortCollections(){
 
-      const collections = {}
-
-      for (var i = 0; i < this.$store.getters.getBooks.length; i++) {
-        this.$store.getters.getBooks[i]
-      }
+      const printGroups = {}
 
       this.$store.getters.getBooks.forEach(function(book){
-        if (book.collections){
-          Object.entries(book.collections).forEach(function([collectionKey, collectionName]){
-            // console.log(i);
-            if (!collections[collectionKey]){
-              collections[collectionKey] = {
+
+        if (book.Print_group){
+          Object.entries(book.Print_group).forEach(function([collectionKey, collectionName]){
+            if (!printGroups[collectionKey]){
+              printGroups[collectionKey] = {
                 key : +collectionKey,
                 name : collectionName,
                 books : []
               }
             }
 
-            collections[collectionKey].books.push(+book.book_id);
+            printGroups[collectionKey].books.push(+book.Book_ID);
 
           })
         }
-      })
-      // console.log(collections);
 
-      this.collections = Object.values(collections);
+      })
+
+      const payload = {
+        p: printGroups
+      }
+
+      // console.log(payload);
+
+      this.$store.dispatch('setGroups', payload);
+
+      // this.printGroups = Object.values(payload);
     },
 
     transformData(data){
@@ -89,6 +92,8 @@ export default {
           for (k = 0; k < keys.length; k++) {
               obj[keys[k]] = data[i][k];
           }
+
+          obj.Book_ID = +obj.Book_ID;
 
           if(obj.ISBNs){obj.ISBNs = obj.ISBNs.slice(1,-1).split(', ');}
           if(obj.ISBN){obj.ISBN = obj.ISBN.slice(1,-1);}
@@ -130,7 +135,7 @@ export default {
           // console.log(b);
           this.$store.dispatch('setBooks', b);
 
-          // this.sortCollections();
+          this.sortCollections();
 
           this.loaded = true;
         })

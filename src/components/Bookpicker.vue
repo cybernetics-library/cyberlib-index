@@ -2,15 +2,24 @@
 <nav>
 
   <div>
-    <h1>Cybernetics Library</h1>
+    <h1>Cybernetics Library</h1><br>
   </div>
 
   <div>
     <h2>Find a book</h2><br>
     <input v-model='search' placeholder="Enter a book title or ISBN" />
     <ul v-if='search'>
-      <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i, '': !currentBook==i}">
-        <a href='#' @click='select(i)'>{{i.Title}}</a>
+      <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i.Book_ID, '': !currentBook==i.Book_ID  }">
+        <a href='#' @click='select([i.Book_ID])'>{{i.Title}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h2>Print group</h2><br>
+    <ul>
+      <li v-for="(i, key) in printGroups" :key='key' >
+        <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
       </li>
     </ul>
   </div>
@@ -37,7 +46,7 @@ export default {
   methods:{
     select(el){
       this.currentBook = el;
-      this.$parent.updateFilter([el]);
+      this.$parent.updateFilter(el);
     },
     clear(){
       this.search = '';
@@ -46,6 +55,12 @@ export default {
     }
   },
   computed:{
+    printGroups(){
+      return this.$store.getters.getPrintGroups
+    },
+    library(){
+      return this.$store.getters.getBooks
+    },
     // Should update to v-show for large list performacne
     // https://stackoverflow.com/questions/43913454/vue-v-for-performance-is-poor
     filteredList() {

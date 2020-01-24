@@ -44,7 +44,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/* @import url(".../assets/css/fonts.css"); */
 
 h2{
   font-size: 14pt;
@@ -68,7 +67,7 @@ span{
   display: inline-block;
   /* border-bottom: 0.1pt solid black; */
   /* text-decoration: underline; */
-  margin: 0 3pt 3pt 0;
+  margin: 0 5pt 3pt 0;
 }
 
 .tags{
