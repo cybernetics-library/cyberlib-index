@@ -46,6 +46,8 @@ export default {
     }
   },
   computed:{
+    // Should update to v-show for large list performacne
+    // https://stackoverflow.com/questions/43913454/vue-v-for-performance-is-poor
     filteredList() {
       return this.$store.getters.getBooks.filter(book => {
         if (book.Title.toLowerCase().includes(this.search.toLowerCase())){

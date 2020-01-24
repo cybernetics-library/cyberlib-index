@@ -16,7 +16,7 @@
       />
   </li>
   </template>
-  
+
 </ol>
 </template>
 
@@ -39,15 +39,9 @@ export default {
     }
   },
   computed:{
-    selectBooks(){
-      const b = []
+    // Should update to v-show for large list performacne
+    // https://stackoverflow.com/questions/43913454/vue-v-for-performance-is-poor
 
-      for (var i = 0; i < this.collection.books.length; i++) {
-        b.push(this.$store.getters.getBooks.filter(book => book.book_id == this.collection.books[i]))
-      }
-
-      return b;
-    }
   },
 }
 </script>
