@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <p v-if="!loaded" class='loading'>Loading library</p>
+
     <div class='container'>
 
       <BookPicker

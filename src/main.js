@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
-import axios from 'axios'
-import Vuex from 'vuex'
 import { store } from './store'
+
+//meta
 import VueMeta from 'vue-meta'
+Vue.use(VueMeta, {
+  // optional pluginOptions
+  refreshOnceOnNavigation: true
+})
 
+//google api
 import VueGoogleApi from 'vue-google-api'
-
 const config = {
   apiKey: process.env.VUE_APP_GOOGLEAPI_KEY,
   clientId: process.env.VUE_APP_GOOGLEAPI_ID,
@@ -16,24 +20,31 @@ const config = {
 }
 Vue.use(VueGoogleApi, config)
 
-require('dotenv').config()
+//router
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+// const Error = { template: "<p style='color:red'>Error page</p>" }
+
+const routes = [
+  // {
+  //   path: '',
+  //   component: Error
+  // },
+  // {
+  //   path: '/error',
+  //   component: Error
+  // }
+];
+
+const router = new VueRouter({
+  routes: routes
+});
 
 Vue.config.productionTip = false
 
-Vue.use(VueMeta, {
-  // optional pluginOptions
-  refreshOnceOnNavigation: true
-})
-
-// Vue.use({
-//     install (Vue) {
-//     Vue.prototype.$api = axios.create({
-//       baseURL: 'https://cors-anywhere.herokuapp.com/https://www.librarything.com/api_getdata.php'
-//     })
-//   }
-// })
-
 new Vue({
   store,
+  router: router,
   render: h => h(App),
 }).$mount('#app')
