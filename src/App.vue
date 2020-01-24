@@ -20,7 +20,6 @@
       </div>
     </nav>
     <Books
-    v-if="selectedCollection"
     :collection="selectedCollection"
     :book="selectedBook"
 
@@ -93,6 +92,33 @@ export default {
       this.collections = Object.values(collections);
     },
 
+    transformData(data){
+      var keys = data.shift(),
+      i = 0, k = 0,
+      obj = null,
+      output = [];
+
+      for (i = 0; i < data.length; i++) {
+          obj = {};
+
+          for (k = 0; k < keys.length; k++) {
+              obj[keys[k]] = data[i][k];
+          }
+
+          if(obj.ISBNs){obj.ISBNs = obj.ISBNs.slice(1,-1).split(', ');}
+          if(obj.ISBN){obj.ISBN = obj.ISBN.slice(1,-1);}
+          if(obj.Tags){obj.Tags = obj.Tags.split(', ');}
+          if(obj.Subjects){obj.Subjects = obj.Subjects.split('|');}
+          if(obj.Print_group){obj.Print_group = obj.Print_group.split(', ');}
+
+          obj.cylibURL = 'https://localhost:8000/' + obj.Book_ID;
+
+          output.push(obj);
+      }
+
+      return output
+    },
+
     gapiCall(){
       // console.log(this.$gapi)
       this.$gapi.isSignedIn()
@@ -106,33 +132,10 @@ export default {
           spreadsheetId: this.$gapi.config.sheetId,
           range: 'Books',
         }).then(response => {
-          // console.log(response.result)
 
-
-          var keys = response.result.values.shift(),
-          i = 0, k = 0,
-          obj = null,
-          output = [];
-
-          for (i = 0; i < response.result.values.length; i++) {
-              obj = {};
-
-              for (k = 0; k < keys.length; k++) {
-                  obj[keys[k]] = response.result.values[i][k];
-              }
-
-              if(obj.ISBNs){obj.ISBNs = obj.ISBNs.slice(1,-1).split(', ');}
-              if(obj.ISBN){obj.ISBN = obj.ISBN.slice(1,-1);}
-              if(obj.Tags){obj.Tags = obj.Tags.split(', ');}
-              if(obj.Subjects){obj.Subjects = obj.Subjects.split('|');}
-              if(obj.Print_group){obj.Print_group = obj.Print_group.split(', ');}
-
-              output.push(obj);
-          }
-
-          console.log(output);
-
-          this.$store.dispatch('setBooks', output);
+          const b = this.transformData(response.result.values);
+          // console.log(b);
+          this.$store.dispatch('setBooks', b);
 
           // this.sortCollections();
 
