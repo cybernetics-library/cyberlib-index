@@ -1,6 +1,6 @@
 <template lang="html">
 <ol>
-  <h2>Or find a book</h2><br>
+  <h2>Find a book</h2><br>
   <input v-model='search' placeholder="Enter a book title or ISBN" />
   <ul v-if='search'>
     <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i, '': !currentBook==i}">

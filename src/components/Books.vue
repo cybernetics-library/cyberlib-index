@@ -1,15 +1,15 @@
 <template lang="html">
 <ol>
 
-  <li v-if='book'>
+  <!-- <li v-if='book'>
     <Bookmark
       :bookData='book'
     />
-  </li>
+  </li> -->
 
-  <li v-else v-for='(b, key) in selectBooks' :key='key'>
+  <li v-for='(b, key) in this.$store.getters.getBooks' :key='key'>
       <Bookmark
-        :bookData='b[0]'
+        :bookData='b'
       />
   </li>
 </ol>
@@ -24,14 +24,7 @@ export default {
     Bookmark
   },
   props:{
-    collection:{
-      type:Object,
-      required:true
-    },
-    book:{
-      type:Object,
-      required:false
-    }
+
   },
   data(){
     return{
