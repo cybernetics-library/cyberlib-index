@@ -51,27 +51,28 @@ export default {
     print(){
       window.print();
     },
-    sortCollections(){
+    sortGroups(){
 
       const printGroups = {}
-
       this.$store.getters.getBooks.forEach(function(book){
         if (book.Print_group){
-          Object.entries(book.Print_group).forEach(function([collectionKey, collectionName]){
-            if (!printGroups[collectionKey]){
-              printGroups[collectionKey] = {
-                key : +collectionKey,
-                name : collectionName,
+          book.Print_group.forEach(function(i){
+
+            if (!printGroups[i]){
+
+              printGroups[i] = {
+                name : i,
                 books : []
               }
             }
-            printGroups[collectionKey].books.push(+book.Book_ID);
+            printGroups[i].books.push(+book.Book_ID);
           })
         }
       })
       const payload = {
         p: printGroups
       }
+      console.log(payload)
       this.$store.dispatch('setGroups', payload);
     },
 
@@ -125,10 +126,10 @@ export default {
           spreadsheetId: this.$gapi.config.sheetId,
           range: 'Books',
         }).then(response => {
-          console.log(response)
+          // console.log(response)
           const b = this.transformData(response.result.values);
           this.$store.dispatch('setBooks', b);
-          this.sortCollections();
+          this.sortGroups();
           this.loaded = true;
         })
       }).catch(e => console.log(e));
@@ -192,6 +193,9 @@ a:hover{
     width: 297mm;
     height: 210mm;
     background-color: white;
+  }
+  footer{
+    display: none;
   }
 
 }
