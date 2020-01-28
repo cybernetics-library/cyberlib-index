@@ -22,6 +22,11 @@ export default {
       errorState: false
     }
   },
+  created(){
+    // setTimeout(function(){
+      window.scroll(0, 0);
+    // },500)
+  },
   computed:{
 
   },
@@ -46,15 +51,6 @@ export default {
   display: flex;
 }
 
-aside{
-  margin: 10mm auto;
-  padding: 5mm;
-  max-width: 50%;
-  background-color: white;
-  height: 180mm;
-  height: 180mm;
-
-}
 /* nested styles in bookmark component */
 .outer{
   background-image: none !important;
