@@ -21,7 +21,11 @@
 
       <span v-if='bookData.From_Where'>From: {{bookData.From_Where}}</span>
 
-      <span class='bottom'>Please do not remove from this book<br>THE CYBERNETICS LIBRARY</span>
+      <div class='footer'>
+        <span>Please do not remove from this book</span>
+        <span>THE CYBERNETICS LIBRARY</span>
+      </div>
+
     </div>
   </div>
 </template>
@@ -52,7 +56,7 @@ h2{
 span{
   font-size: 7pt;
   letter-spacing: 0.1pt;
-  margin: 8pt 0 5pt;
+  margin: 8pt 0 4pt;
   display: block;
   font-family: 'Plex Mono', Courier, monospace;
 }
@@ -65,9 +69,10 @@ span{
 .tag{
   /* font-size: 8pt; */
   display: inline-block;
-  /* border-bottom: 0.1pt solid black; */
+  border-bottom: 0.05pt solid black;
   /* text-decoration: underline; */
-  margin: 0 5pt 3pt 0;
+  margin: 0 5pt 0 0;
+  line-height: 1.5;
 }
 
 .tags{
@@ -75,11 +80,16 @@ span{
   width: 100%;
 }
 
-.bottom{
+.footer{
   position: absolute;
   bottom:4mm;
-  line-height: 1.2;
+  /* line-height: 2; */
 }
+
+.footer span{
+  /* margin:  */
+}
+
 .bookmark{
   position: relative;
   background-color: white;
