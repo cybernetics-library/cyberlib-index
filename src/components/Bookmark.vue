@@ -2,29 +2,29 @@
   <div class='bookmark outer' :id='bookData.Book_ID' v-bind:style="{backgroundImage: 'url(' + bookData.Cover_URL + ')'}">
     <div class='inner' >
       <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
-      <span>CYLIB ID</span>
+      <span class='-mono'>CYLIB ID</span>
       <h2>{{bookData.Book_ID}}</h2>
 
-      <span>Title</span>
+      <span class='-mono'>Title</span>
       <h2>{{bookData.Title}}</h2>
 
-      <span>Author(s)</span>
+      <span class='-mono'>Author(s)</span>
       <h2>{{bookData.Author}}</h2>
 
-      <span>Published</span>
+      <span class='-mono'>Published</span>
       <h2>{{bookData.Date}}</h2>
 
-      <div class='tags' v-if='bookData.Tags'>
+      <div class='tags -mono' v-if='bookData.Tags'>
         <span>Tags</span>
         <span class='tag' v-for='(t, key) in bookData.Tags' :key='key'>{{t}}</span>
       </div>
 
-      <span v-if='bookData.From_Where'>From: {{bookData.From_Where}}</span>
+      <span class='-mono' v-if='bookData.From_Where'>From: {{bookData.From_Where}}</span>
 
-      <div class='footer'>
+      <footer class='bookmark-footer -mono'>
         <span>Please do not remove from this book</span>
         <span>THE CYBERNETICS LIBRARY</span>
-      </div>
+      </footer>
 
     </div>
   </div>
@@ -58,7 +58,6 @@ span{
   letter-spacing: 0.1pt;
   margin: 8pt 0 4pt;
   display: block;
-  font-family: 'Plex Mono', Courier, monospace;
 }
 
 .qr{
@@ -80,20 +79,19 @@ span{
   width: 100%;
 }
 
-.footer{
+.bookmark-footer{
   position: absolute;
   bottom:4mm;
-  /* line-height: 2; */
 }
 
-.footer span{
-  /* margin:  */
+.bookmark-footer span{
+  margin: 4pt 0 4pt;
 }
+
 
 .bookmark{
   position: relative;
   background-color: white;
-  /* border: 0.25pt solid black; */
   box-sizing: border-box;
   width: 65mm;
   height: 180mm;
@@ -107,14 +105,9 @@ span{
   background-image: none !important;
 }
 
-.outer:hover .inner{
-  /* opacity: 1; */
-}
-
 .inner{
   padding:5mm;
   mix-blend-mode: multiply;
-  /* opacity: 0; */
 }
 
 

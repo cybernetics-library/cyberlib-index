@@ -12,9 +12,10 @@
         :filter='filter'
       />
 
-      <footer v-if="loaded">
-        The Cybernetics Library 2020 <a href='https://github.com/cybernetics-library/bookmark-generator/'>(View Source →)</a>
+      <footer class='app-footer' v-if="loaded">
+        Retrieved: {{meta.date}}
       </footer>
+
     </div>
 
   </div>
@@ -37,7 +38,8 @@ export default {
       printGroups: null,
       selectedCollection: null,
       selectedBook: null,
-      filter:null
+      filter:null,
+      meta:null
     }
   },
   metaInfo: {
@@ -72,7 +74,7 @@ export default {
       const payload = {
         p: printGroups
       }
-      console.log(payload)
+      // console.log(payload)
       this.$store.dispatch('setGroups', payload);
     },
 
@@ -130,6 +132,7 @@ export default {
           const b = this.transformData(response.result.values);
           this.$store.dispatch('setBooks', b);
           this.sortGroups();
+          this.meta = response.headers;
           this.loaded = true;
         })
       }).catch(e => console.log(e));
@@ -164,7 +167,7 @@ body{
 
 html{
   font-family: 'Times New Roman', Times, Serif;
-  font-size: 14pt;
+  font-size: 16px;
 
   -webkit-font-smoothing:antialiased;
 }
@@ -181,6 +184,14 @@ a:visited{
 
 a:hover{
   text-decoration: underline;
+}
+
+.-serif{
+  font-family: 'Times New Roman', Times, Serif;
+}
+
+.-mono{
+  font-family: 'Plex Mono', Courier, monospace;
 }
 
 @page {
@@ -220,7 +231,8 @@ a:hover{
   width: 0px;
 }
 
-footer{
+.app-footer{
+  font-size: 14pt;
   padding: 5mm;
   color:white;
 }

@@ -1,27 +1,26 @@
 <template lang="html">
 <nav>
-
   <div class='nav-col'>
-    <h1>The Cybernetics Library</h1><br>
+    <h1>The Cybernetics Library</h1>
   </div>
 
   <div class='nav-col'>
     <h2>Find a book </h2><br>
-    <input v-model='search' placeholder="Enter a book title or ISBN" />
-    <ul v-if='search'>
+    <input class='-serif' v-model='search' placeholder="Enter a book title or ISBN" />
+    <ol v-if='search'>
       <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i.Book_ID, '': !currentBook==i.Book_ID  }">
         <a href='#' @click='select([i.Book_ID])'>{{i.Title}}</a>
       </li>
-    </ul>
+    </ol>
   </div>
 
   <div class='nav-col' v-if='printGroups'>
     <h2>Or select group</h2><br>
-    <ul>
+    <ol>
       <li v-for="(i, key) in printGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
         <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
       </li>
-    </ul>
+    </ol>
   </div>
 
   <div class='nav-col'>
@@ -33,7 +32,6 @@
 
     <a href='#' v-if='currentBook' @click='clear()'>Clear filter ×</a>
   </div>
-
 
 </nav>
 </template>
@@ -87,7 +85,7 @@ export default {
 
 nav{
   display: flex;
-  /* justify-content: space-between; */
+  font-size: 14pt;
   background-color: white;
   padding:5mm;
 }
@@ -95,23 +93,17 @@ nav{
 .nav-col{
   width: 50%;
   padding-right: 5mm;
-  /* text-align: center; */
 }
 
-.nav-col:last-of-type{
-  /* text-align: right; */
-}
 
 input{
-  font-size: 1rem;
+  font-size: 14pt;
   padding: 1px 0;
-  font-family: Times;
   width: 100%;
   border:none;
   margin-bottom: 16px;
   border-bottom: 1px solid transparent;
 
-  /* padding:5mm; */
 }
 
 input:focus{
@@ -120,9 +112,6 @@ input:focus{
 
 }
 
-ul{
-
-}
 .active{
   color:red;
 }
