@@ -33,6 +33,19 @@ export default {
       meta:null
     }
   },
+  methods:{
+    selectCollection(el){
+      this.selectedBook = null;
+      this.selectedCollection = el;
+
+    },
+    updateFilter(el){
+      this.filter = el;
+    },
+    clearFilter(){
+      this.filter = null;
+    }
+  }
 }
 </script>
 

@@ -23,10 +23,6 @@ export default {
   data(){
     return{
       loaded: false,
-      printGroups: null,
-      selectedCollection: null,
-      selectedBook: null,
-      filter:null,
       meta:null
     }
   },
@@ -126,17 +122,7 @@ export default {
       }).catch(e => console.log(e));
 
     },
-    selectCollection(el){
-      this.selectedBook = null;
-      this.selectedCollection = el;
 
-    },
-    updateFilter(el){
-      this.filter = el;
-    },
-    clearFilter(){
-      this.filter = null;
-    }
   },
   mounted(){
     this.gapiCall();
