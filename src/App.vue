@@ -2,21 +2,23 @@
   <div id="app">
     <p v-if="!loaded" class='loading'>Loading library</p>
 
-    <div class='container'>
+    <transition  name="fade">
+    <div v-if="loaded" class='container'>
 
       <BookPicker
         id='bookpicker'
-        v-if="loaded"
       />
+
       <Books
         :filter='filter'
       />
 
-      <footer class='app-footer' v-if="loaded">
-        Retrieved: {{meta.date}}
+      <footer class='app-footer' >
+        Library data retrieved: {{meta.date}}
       </footer>
 
     </div>
+    </transition>
 
   </div>
 </template>
@@ -217,8 +219,7 @@ a:hover{
 
 .loading{
   color:white;
-  /* font-size: 200%; */
-  /* text-align: center; */
+  font-size: 14pt;
   margin: 5mm;
 }
 .loading:after {
@@ -248,6 +249,11 @@ a:hover{
     width: 1.25em;
   }
 }
-
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 
 </style>
