@@ -2,13 +2,13 @@
   <div id="app">
     <p v-if="!loaded" class='loading'>Loading library</p>
 
-    <transition name="fade">
+    <!-- <transition name="fade"> -->
       <router-view v-if="loaded"></router-view>
-    </transition>
+    <!-- </transition> -->
 
-    <footer v-if="loaded" class='app-footer' >
+    <!-- <footer v-if="loaded" class='app-footer' >
       Library data retrieved: {{meta.date}}
-    </footer>
+    </footer> -->
 
   </div>
 </template>
