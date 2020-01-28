@@ -18,6 +18,9 @@ export const store = new Vuex.Store({
     }
   },
   getters:{
+    getBookByID: (state) => (id) => {
+      return state.books.find(book => book.Book_ID == id)
+    },
     getBooks(state){
       return state.books
     },

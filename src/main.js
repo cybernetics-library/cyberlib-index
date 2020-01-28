@@ -24,17 +24,19 @@ Vue.use(VueGoogleApi, config)
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-// const Error = { template: "<p style='color:red'>Error page</p>" }
+import BookPage from './pages/book-page.vue';
+import HomePage from './pages/home-page.vue';
 
 const routes = [
-  // {
-  //   path: '',
-  //   component: Error
-  // },
-  // {
-  //   path: '/error',
-  //   component: Error
-  // }
+  {
+    path: '/:id',
+    component: BookPage,
+    // props: true
+  },{
+    path: '',
+    component: HomePage,
+    // props: true
+  },
 ];
 
 const router = new VueRouter({

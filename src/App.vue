@@ -2,37 +2,23 @@
   <div id="app">
     <p v-if="!loaded" class='loading'>Loading library</p>
 
-    <transition  name="fade">
-    <div v-if="loaded" class='container'>
-
-      <BookPicker
-        id='bookpicker'
-      />
-
-      <Books
-        :filter='filter'
-      />
-
-      <footer class='app-footer' >
-        Library data retrieved: {{meta.date}}
-      </footer>
-
-    </div>
+    <transition name="fade">
+      <router-view v-if="loaded"></router-view>
     </transition>
+
+    <footer v-if="loaded" class='app-footer' >
+      Library data retrieved: {{meta.date}}
+    </footer>
 
   </div>
 </template>
 
 <script>
 
-import BookPicker from './components/Bookpicker.vue'
-import Books from './components/Books.vue'
 
 export default {
   name: 'app',
   components: {
-    BookPicker,
-    Books
   },
   data(){
     return{
@@ -161,61 +147,7 @@ export default {
 <style>
 @import url("./assets/css/reset.css");
 @import url("./assets/css/fonts.css");
-
-body{
-  background-color: black;
-
-}
-
-html{
-  font-family: 'Times New Roman', Times, Serif;
-  font-size: 16px;
-
-  -webkit-font-smoothing:antialiased;
-}
-
-
-
-a{
-  color:inherit;
-  text-decoration: none;
-}
-a:visited{
-  color:inherit;
-}
-
-a:hover{
-  text-decoration: underline;
-}
-
-.-serif{
-  font-family: 'Times New Roman', Times, Serif;
-}
-
-.-mono{
-  font-family: 'Plex Mono', Courier, monospace;
-}
-
-@page {
-  /* size: A4 landscape; */
-  margin: 0;
-  padding:0;
-}
-@media print {
-  html, body {
-    width: 297mm;
-    height: 210mm;
-    background-color: white;
-  }
-  footer{
-    display: none;
-  }
-
-}
-
-.container{
-  /* display: flex; */
-}
+@import url("./assets/css/main.css");
 
 .loading{
   color:white;
@@ -238,22 +170,5 @@ a:hover{
   color:white;
 }
 
-@keyframes ellipsis {
-  to {
-    width: 1.25em;
-  }
-}
-
-@-webkit-keyframes ellipsis {
-  to {
-    width: 1.25em;
-  }
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 
 </style>
