@@ -4,9 +4,9 @@
       <Bookmark :bookData='currentBook'></Bookmark>
     </div>
 
-    <aside>
-      <!-- {{currentBook}} -->
-    </aside>
+    <!-- <aside>
+      {{currentBook}}
+    </aside> -->
   </div>
 </template>
 
@@ -50,7 +50,16 @@ export default {
   /* color:white; */
   /* padding: 5mm; */
 }
+.outer{
+  background-image: none !important;
+}
 aside{
-  color:white;
+  margin: 10mm auto;
+  padding: 5mm;
+  max-width: 50%;
+  background-color: white;
+  height: 180mm;
+  height: 180mm;
+
 }
 </style>
