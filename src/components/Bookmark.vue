@@ -1,4 +1,6 @@
 <template lang="html">
+<router-link class='rl' :to="'/'+bookData.Book_ID">
+
   <div class='bookmark outer' :id='bookData.Book_ID' v-bind:style="{backgroundImage: 'url(' + bookData.Cover_URL + ')'}">
     <div class='inner' >
       <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
@@ -28,6 +30,8 @@
 
     </div>
   </div>
+</router-link>
+
 </template>
 
 <script>
@@ -88,6 +92,9 @@ span{
   margin: 4pt 0 4pt;
 }
 
+.rl:hover{
+  text-decoration: none;
+}
 
 .bookmark{
   position: relative;
