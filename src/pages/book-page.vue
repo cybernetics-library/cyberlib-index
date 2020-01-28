@@ -2,6 +2,7 @@
   <div class='container' v-bind:style="{backgroundImage: 'url(' + currentBook.Cover_URL + ')'}">
     <div class='content'>
       <Checkout :bookData='currentBook'></Checkout>
+      <router-link class='back' to='/'>Back</router-link>
     </div>
 
   </div>
@@ -46,9 +47,14 @@ export default {
 <style lang="css" scoped>
 .content{
   margin: 10mm auto;
+  max-width: 450px;
 }
 .container{
   display: flex;
+}
+.back{
+  background-color: white;
+  padding: 5mm;
 }
 
 /* nested styles in bookmark component */
