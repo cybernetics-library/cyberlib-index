@@ -1,23 +1,20 @@
 <template lang="html">
   <div class='container' v-bind:style="{backgroundImage: 'url(' + currentBook.Cover_URL + ')'}">
     <div class='content'>
-      <Bookmark :bookData='currentBook'></Bookmark>
+      <Checkout :bookData='currentBook'></Checkout>
     </div>
 
-    <!-- <aside>
-      {{currentBook}}
-    </aside> -->
   </div>
 </template>
 
 <script>
 
-import Bookmark from '../components/Bookmark.vue'
+import Checkout from '../components/Checkout.vue'
 
 export default {
   name:'BookPage',
   components:{
-    Bookmark
+    Checkout
   },
   data(){
     return{
@@ -47,12 +44,8 @@ export default {
 }
 .container{
   display: flex;
-  /* color:white; */
-  /* padding: 5mm; */
 }
-.outer{
-  background-image: none !important;
-}
+
 aside{
   margin: 10mm auto;
   padding: 5mm;
@@ -62,4 +55,10 @@ aside{
   height: 180mm;
 
 }
+/* nested styles in bookmark component */
+.outer{
+  background-image: none !important;
+}
+
+
 </style>
