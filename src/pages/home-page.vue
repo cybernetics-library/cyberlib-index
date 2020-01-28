@@ -44,6 +44,9 @@ export default {
     },
     clearFilter(){
       this.filter = null;
+    },
+    print(){
+      window.print();
     }
   }
 }

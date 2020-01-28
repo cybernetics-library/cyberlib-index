@@ -34,9 +34,7 @@ export default {
     ]
   },
   methods:{
-    print(){
-      window.print();
-    },
+
     sortGroups(){
 
       const printGroups = {}
