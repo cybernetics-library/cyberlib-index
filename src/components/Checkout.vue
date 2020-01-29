@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class='checkout outer' :id='bookData.Book_ID' v-bind:style="{backgroundImage: 'url(' + bookData.Cover_URL + ')'}">
+  <div class='checkout outer' :id='bookData.Book_ID'>
     <div class='inner' >
       <!-- <span class='-mono'>CYLIB ID</span>
       <h2>{{bookData.Book_ID}}</h2> -->

@@ -14,7 +14,7 @@
     </ol>
   </div>
 
-  <div class='nav-col' v-if='printGroups'>
+  <div class='nav-col'>
     <h2>Or select group</h2><br>
     <ol>
       <li v-for="(i, key) in printGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
