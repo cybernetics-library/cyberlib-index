@@ -1,4 +1,4 @@
-# bookmark-generator
+# Cybernetics Library index
 
 Single page application built in Vue for indexing and displaying book data and generating bookmarks.
 
