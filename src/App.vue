@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p v-if="!loaded" class='loading'>Loading library</p>
+    <p v-if="!loaded" class='loading -cyber'>Loading library</p>
 
     <!-- <transition name="fade"> -->
       <router-view v-if="loaded"></router-view>

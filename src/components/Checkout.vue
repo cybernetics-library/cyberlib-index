@@ -5,30 +5,30 @@
       <img :src='bookData.Cover_URL'/>
 
       <span class='-mono'>CYLIB ID</span>
-      <h2>{{bookData.Book_ID}}</h2>
+      <h2 class='-cyber'>{{bookData.Book_ID}}</h2>
 
       <span class='-mono'>Title</span>
-      <h2>{{bookData.Title}}</h2>
+      <h2 class='-cyber'>{{bookData.Title}}</h2>
 
       <span class='-mono'>Author(s)</span>
-      <h2>{{bookData.Author}}</h2>
+      <h2 class='-cyber'>{{bookData.Author}}</h2>
 
       <span class='-mono'>Language(s)</span>
-      <h2>{{bookData.Languages}}</h2>
+      <h2 class='-cyber'>{{bookData.Languages}}</h2>
 
       <span class='-mono'>Published</span>
-      <h2>{{bookData.Publication}}</h2>
+      <h2 class='-cyber'>{{bookData.Publication}}</h2>
 
       <span class='-mono'>ISBN</span>
-      <h2>{{bookData.ISBN}}</h2>
+      <h2 class='-cyber'>{{bookData.ISBN}}</h2>
 
       <div class='tags' v-if='bookData.Tags'>
         <span>Tags</span>
-        <h2 class='tag' v-for='(t, key) in bookData.Tags' :key='key'>{{t}}</h2>
+        <h2 class='tag -cyber' v-for='(t, key) in bookData.Tags' :key='key'>{{t}}</h2>
       </div>
 
       <span class='-mono' v-if='bookData.From_Where'>From</span>
-      <h2>{{bookData.From_Where}}</h2>
+      <h2 class='-cyber'>{{bookData.From_Where}}</h2>
 
       <footer class='checkout-footer -mono'>
         <span>CYBERNETICS LIBRARY {{bookData.Book_ID}}</span>
@@ -61,7 +61,7 @@ img{
 }
 
 h2{
-  font-size: 14pt;
+  font-size: 20pt;
   padding-right: 0.5pt;
   margin-bottom: 3.5mm;
 

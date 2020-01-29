@@ -5,7 +5,7 @@
     <div class='inner' >
 
       <header>
-        <h3 class='-mono'>CYBERNETICS LIBRARY</h3>
+        <h3 class='-cyber'>CYBERNETICS LIBRARY</h3>
 
         <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
       </header>
@@ -14,7 +14,7 @@
       <h2>{{bookData.Book_ID}}</h2>
 
       <span class='-mono'>Title</span>
-      <h2>{{bookData.Title}}</h2>
+      <h2 >{{bookData.Title}}</h2>
 
       <span class='-mono'>Author(s)</span>
       <h2>{{bookData.Author}}</h2>
@@ -65,9 +65,13 @@ h2{
   line-height: 1.1;
 }
 
+h2.-cyber{
+  font-size: 150%;
+}
+
 h3{
   line-height: 1.5;
-  font-size: 7pt;
+  /* font-size: 7pt; */
   letter-spacing: 0.4pt;
   margin-bottom: 3mm;
   position: relative;
@@ -87,7 +91,7 @@ span{
 }
 
 .qr{
-  margin-bottom: 5pt;
+  margin-bottom: 4mm;
 
 }
 

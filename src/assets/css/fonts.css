@@ -12,3 +12,15 @@
   src: url("../fonts/IBMPlexSans-Regular.woff") format("woff"),
        url("../fonts/IBMPlexSans-Regular.ttf") format("ttf");
 }
+
+@font-face {
+  font-family: 'Data';
+  src: url('../fonts/Data70Plain.eot');
+  src: url('../fonts/Data70Plain.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Data70Plain.svg#Data70Plain') format('svg'),
+       url('../fonts/Data70Plain.ttf') format('truetype'),
+       url('../fonts/Data70Plain.woff') format('woff'),
+       url('../fonts/Data70Plain.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
