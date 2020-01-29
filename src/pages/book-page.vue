@@ -2,7 +2,6 @@
   <div class='container' >
     <div class='content'>
       <Checkout :bookData='currentBook'></Checkout>
-      <router-link class='back' to='/'>Back</router-link>
     </div>
 
   </div>
@@ -46,11 +45,15 @@ export default {
 
 <style lang="css" scoped>
 .content{
-  margin: 10mm auto;
-  max-width: 450px;
+  margin: 0 auto;
+  width: 800px;
+  /* background-color: red; */
 }
 .container{
+  height: 100vh;
   display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .back{
   background-color: white;
