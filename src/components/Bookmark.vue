@@ -3,7 +3,13 @@
 
   <div class='bookmark outer' :id='bookData.Book_ID' v-bind:style="{backgroundImage: 'url(' + bookData.Cover_URL + ')'}">
     <div class='inner' >
-      <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
+
+      <header>
+        <h3 class='-mono'>CYBERNETICS LIBRARY</h3>
+
+        <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
+      </header>
+
       <span class='-mono'>CYLIB ID</span>
       <h2>{{bookData.Book_ID}}</h2>
 
@@ -25,7 +31,6 @@
 
       <footer class='bookmark-footer -mono'>
         <span>Please do not remove from this book</span>
-        <span>THE CYBERNETICS LIBRARY</span>
       </footer>
 
     </div>
@@ -56,7 +61,24 @@ export default {
 h2{
   font-size: 14pt;
   padding-right: 0.5pt;
+  margin-bottom: 3.5mm;
+  line-height: 1.1;
 }
+
+h3{
+  line-height: 1.5;
+  font-size: 7pt;
+  letter-spacing: 0.4pt;
+  margin-bottom: 3mm;
+  position: relative;
+  top:-3.5pt;
+  word-spacing: -0.6pt;
+
+}
+
+header{
+}
+
 span{
   font-size: 7pt;
   letter-spacing: 0.1pt;
@@ -72,9 +94,11 @@ span{
 .tag{
   /* font-size: 8pt; */
   display: inline-block;
-  border-bottom: 0.05pt solid black;
+  padding: 2pt 3pt;
+  border-radius: 3pt;
+  border: 1px solid black;
   /* text-decoration: underline; */
-  margin: 0 5pt 0 0;
+  margin: 0 5pt 5pt 0;
   line-height: 1.5;
 }
 
@@ -90,6 +114,7 @@ span{
 
 .bookmark-footer span{
   margin: 4pt 0 4pt;
+  word-spacing: -0.6pt;
 }
 
 .rl:hover{

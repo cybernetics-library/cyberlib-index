@@ -6,7 +6,7 @@
 
   <div class='nav-col'>
     <h2>Find a book </h2><br>
-    <input class='-serif' v-model='search' placeholder="Enter a book title or ISBN" />
+    <input class='-sans' v-model='search' placeholder="Enter a book title or ISBN" />
     <ol v-if='search'>
       <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i.Book_ID, '': !currentBook==i.Book_ID  }">
         <a href='#' @click='select([i.Book_ID])'>{{i.Title}}</a>

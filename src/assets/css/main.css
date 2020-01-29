@@ -5,7 +5,8 @@ body{
 }
 
 html{
-  font-family: 'Times New Roman', Times, Serif;
+  /* font-family: 'Times New Roman', Times, Serif; */
+  font-family: 'IBM Plex Sans', Courier, monospace;
   font-size: 16px;
 
   -webkit-font-smoothing:antialiased;
@@ -26,7 +27,9 @@ a:hover{
 }
 
 .-serif{
-  font-family: 'Times New Roman', Times, Serif;
+  /* font-family: 'Times New Roman', Times, Serif; */
+  font-family: 'IBM Plex Sans', Courier, monospace;
+
 }
 
 .-mono{
