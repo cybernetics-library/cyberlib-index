@@ -1,9 +1,14 @@
 # bookmark-generator
 
+Single page application built in Vue for indexing and displaying book data and generating bookmarks.
+
+Draws book data from a google spreadsheet.
+
 ## Project setup
 ```
 npm install
 ```
+This application requires Google sheets API integration.
 
 ### Compiles and hot-reloads for development
 ```
@@ -19,6 +24,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
