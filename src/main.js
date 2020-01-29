@@ -26,6 +26,7 @@ Vue.use(VueRouter)
 
 import BookPage from './pages/book-page.vue';
 import HomePage from './pages/home-page.vue';
+import ErrorPage from './pages/error-page.vue';
 
 const routes = [
   {
@@ -36,7 +37,7 @@ const routes = [
     component: HomePage,
   },{
     path: '*',
-    component: HomePage,
+    component: ErrorPage,
   },
 ];
 
