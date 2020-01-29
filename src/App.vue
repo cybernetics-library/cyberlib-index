@@ -81,7 +81,8 @@ export default {
           if(obj.Subjects){obj.Subjects = obj.Subjects.split('|');}
           if(obj.Print_group){obj.Print_group = obj.Print_group.split(', ');}
 
-          obj.Cylib_URL = 'https://library.trust.support/#/catalog/' + obj.Book_ID;
+          // obj.Cylib_URL = 'https://library.trust.support/catalog/' + obj.Book_ID;
+          obj.Cylib_URL = 'https://localhost:8000/catalog/' + obj.Book_ID;
 
           const a = obj.Primary_Author.split(', ');
 

@@ -29,17 +29,19 @@ import HomePage from './pages/home-page.vue';
 
 const routes = [
   {
-    path: '/catalogue/:id',
+    path: '/catalog/:id',
     component: BookPage,
-    // props: true
   },{
     path: '',
     component: HomePage,
-    // props: true
+  },{
+    path: '*',
+    component: HomePage,
   },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes: routes
 });
 

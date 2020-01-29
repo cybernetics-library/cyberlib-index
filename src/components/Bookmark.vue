@@ -1,5 +1,5 @@
 <template lang="html">
-<router-link class='rl' :to="'/'+bookData.Book_ID">
+<router-link class='rl' :to="`/catalog/`+bookData.Book_ID">
 
   <div class='bookmark outer' :id='bookData.Book_ID' v-bind:style="{backgroundImage: 'url(' + bookData.Cover_URL + ')'}">
     <div class='inner' >
