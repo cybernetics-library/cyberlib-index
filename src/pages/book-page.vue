@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class='container' v-bind:style="{backgroundImage: 'url(' + currentBook.Cover_URL + ')'}">
+  <div class='container' >
     <div class='content'>
       <Checkout :bookData='currentBook'></Checkout>
       <router-link class='back' to='/'>Back</router-link>

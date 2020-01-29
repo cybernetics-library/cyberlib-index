@@ -1,8 +1,11 @@
 <template lang="html">
   <div class='checkout outer' :id='bookData.Book_ID'>
     <div class='inner' >
-      <!-- <span class='-mono'>CYLIB ID</span>
-      <h2>{{bookData.Book_ID}}</h2> -->
+
+      <img :src='bookData.Cover_URL'/>
+
+      <span class='-mono'>CYLIB ID</span>
+      <h2>{{bookData.Book_ID}}</h2>
 
       <span class='-mono'>Title</span>
       <h2>{{bookData.Title}}</h2>
@@ -28,7 +31,7 @@
       <h2>{{bookData.From_Where}}</h2>
 
       <footer class='checkout-footer -mono'>
-        <span>THE CYBERNETICS LIBRARY {{bookData.Book_ID}}</span>
+        <span>CYBERNETICS LIBRARY {{bookData.Book_ID}}</span>
       </footer>
 
     </div>
@@ -53,9 +56,15 @@ export default {
 
 <style lang="css" scoped>
 
+img{
+  max-height: 200px;
+}
+
 h2{
   font-size: 14pt;
   padding-right: 0.5pt;
+  margin-bottom: 3.5mm;
+
 }
 span{
   font-size: 7pt;
@@ -72,7 +81,7 @@ span{
 .tag{
   /* font-size: 8pt; */
   display: inline-block;
-  border-bottom: 0.05pt solid black;
+  border-bottom: 0.05pt solid white;
   /* text-decoration: underline; */
   margin: 0 5pt 0 0;
   /* line-height: 1.5; */
@@ -95,7 +104,8 @@ span{
 
 .checkout{
   position: relative;
-  background-color: white;
+  color:white;
+  /* background-color: white; */
   box-sizing: border-box;
   width: 100%;
   height: 180mm;
@@ -109,69 +119,4 @@ span{
   background-image: none !important;
 }
 
-.inner{
-  padding:5mm;
-  mix-blend-mode: multiply;
-}
-
-
-@media print {
-
-  .checkout{
-    border: none;
-  }
-
-
-  .outer::before{
-    position: absolute;
-    display: block;
-    content:' ';
-    top:-3mm;
-    left:-3mm;
-    height: 3mm;
-    width: 3mm;
-    border-right: 0.25pt solid black;
-    border-bottom: 0.25pt solid black;
-  }
-
-  .outer::after{
-    position: absolute;
-    display: block;
-    content:' ';
-    bottom:-3mm;
-    right:-3mm;
-    height: 3mm;
-    width: 3mm;
-    border-left: 0.25pt solid black;
-    border-top: 0.25pt solid black;
-  }
-
-  .inner::before{
-    position: absolute;
-    display: block;
-    content:' ';
-    top:-3mm;
-    right:-3mm;
-    height: 3mm;
-    width: 3mm;
-    border-left: 0.25pt solid black;
-    border-bottom: 0.25pt solid black;
-  }
-
-  .inner::after{
-    position: absolute;
-    display: block;
-    content:' ';
-    bottom:-3mm;
-    left:-3mm;
-    height: 3mm;
-    width: 3mm;
-    border-right: 0.25pt solid black;
-    border-top: 0.25pt solid black;
-  }
-
-}
-img{
-  /* max-width: 300mm; */
-}
 </style>
