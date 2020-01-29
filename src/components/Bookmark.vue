@@ -31,6 +31,7 @@
 
       <footer class='bookmark-footer -mono'>
         <span>Please do not remove from this book</span>
+        <span>Generated: {{date  }}</span>
       </footer>
 
     </div>
@@ -46,6 +47,15 @@ export default {
   name: 'bookmark',
   components:{
     QrcodeVue
+  },
+  data(){
+    return{
+    }
+  },
+  computed:{
+    date(){
+      return Date().slice(0,15);
+    }
   },
   props:{
     bookData:{
