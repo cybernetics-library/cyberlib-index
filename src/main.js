@@ -29,7 +29,7 @@ import HomePage from './pages/home-page.vue';
 
 const routes = [
   {
-    path: '/:id',
+    path: '/catalogue/:id',
     component: BookPage,
     // props: true
   },{
