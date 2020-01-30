@@ -63,6 +63,17 @@ ol{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: space-around; */
+}
+
+@media print {
+  ol{
+    /* margin-left: 10mm; */
+    /* padding: 0 10mm; */
+  }
+  li:nth-of-type(4n+1){
+    margin-left: 10mm !important;
+  }
 }
 
 

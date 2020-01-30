@@ -180,8 +180,13 @@ span{
 @media print {
 
   .bookmark{
-    border: none;
+    margin: 5mm 0 25mm;
   }
+
+  
+
+
+
 
 
   .outer::before{
