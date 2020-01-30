@@ -60,11 +60,16 @@ export default {
       obj = null,
       output = [];
 
+      keys.forEach((key, i) => {
+        keys[i] = keys[i].split(' ').join('_')
+      });
+
       for (i = 0; i < data.length; i++) {
           obj = {};
 
           for (k = 0; k < keys.length; k++) {
               obj[keys[k]] = data[i][k];
+
           }
 
           obj.Book_ID = +obj.Book_ID;
@@ -78,13 +83,15 @@ export default {
           obj.Cylib_URL = 'https://library.trust.support/' + obj.Book_ID;
           // obj.Cylib_URL = 'https://localhost:8000/catalog/' + obj.Book_ID;
 
-          const a = obj.Primary_Author.split(', ');
+          // const a = obj.Primary_Author.split(', ');
+          //
+          // if (a[1]) {
+          //   obj.Author = a[1] + ' ' + a[0];
+          // } else {
+          //   obj.Author = a[0];
+          // }
 
-          if (a[1]) {
-            obj.Author = a[1] + ' ' + a[0];
-          } else {
-            obj.Author = a[0];
-          }
+          obj.Author = obj.Primary_Author;
 
           output.push(obj);
       }
