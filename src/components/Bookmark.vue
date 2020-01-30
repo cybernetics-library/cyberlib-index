@@ -28,8 +28,8 @@
       <span class='-mono' v-if='bookData.From_Where'>From: {{bookData.From_Where}}</span>
 
       <footer class='bookmark-footer -mono'>
-        <span>Please do not remove from this book</span>
-        <span>Generated: {{date  }}</span>
+        <span >Generated: {{date  }}</span>
+        <span>Please do not remove from this book.</span>
       </footer>
 
     </div>
@@ -67,40 +67,35 @@ export default {
 <style lang="css" scoped>
 
 h2{
-  font-size: 14pt;
+  font-size: 12pt;
   padding-right: 0.5pt;
-  margin-bottom: 3.5mm;
-  line-height: 1.1;
-}
-
-h2.-cyber{
-  font-size: 150%;
+  margin-bottom: 3mm;
+  line-height: 1.2;
 }
 
 h3{
-  line-height: 1.5;
-  /* font-size: 7pt; */
-  letter-spacing: 0.4pt;
-  margin-bottom: 3mm;
+  font-size: 14pt;
+  width: 100%;
+  text-align: left;
+  letter-spacing: 1.1pt;
+  margin-bottom: 4mm;
   position: relative;
-  top:-3.5pt;
+  /* top:-3.5pt; */
   word-spacing: -0.6pt;
+  padding-bottom: 3mm;
+  border-bottom: 1px solid black;
 
-}
-
-header{
 }
 
 span{
-  font-size: 7pt;
+  font-size: 6pt;
   letter-spacing: 0.1pt;
-  margin: 8pt 0 4pt;
+  margin: 8pt 0 3pt;
   display: block;
 }
 
 .qr{
   margin-bottom: 4mm;
-
 }
 
 .tag{
@@ -108,7 +103,7 @@ span{
   display: inline-block;
   padding: 2pt 3pt;
   border-radius: 3pt;
-  border: 1px solid black;
+  border: 0.5px solid black;
   /* text-decoration: underline; */
   margin: 0 5pt 5pt 0;
   line-height: 1.5;
@@ -120,8 +115,11 @@ span{
 }
 
 .bookmark-footer{
+  width: calc(100% - 10mm);
+  border-top: 1px solid black;
   position: absolute;
   bottom:4mm;
+  padding-top: 2.5mm;
 }
 
 .bookmark-footer span{
@@ -153,6 +151,14 @@ span{
   padding:5mm;
   mix-blend-mode: multiply;
 }
+
+
+/* @media screen (max-width: 400px) {
+  .bookmark{
+    margin: 0 !important;
+  }
+} */
+
 
 
 @media print {

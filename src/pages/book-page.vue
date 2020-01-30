@@ -4,6 +4,8 @@
       <Checkout :bookData='currentBook'></Checkout>
     </div>
 
+    <router-link class='back' to="/">↩</router-link>
+
   </div>
 </template>
 
@@ -56,7 +58,10 @@ export default {
   align-items: center;
 }
 .back{
-  background-color: white;
+  position: fixed;
+  top:0;
+  left:0;
+  color:white;
   padding: 5mm;
 }
 

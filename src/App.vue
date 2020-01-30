@@ -2,13 +2,7 @@
   <div id="app">
     <p v-if="!loaded" class='loading -cyber'>Loading library</p>
 
-    <!-- <transition name="fade"> -->
-      <router-view v-if="loaded"></router-view>
-    <!-- </transition> -->
-
-    <!-- <footer v-if="loaded" class='app-footer' >
-      Library data retrieved: {{meta.date}}
-    </footer> -->
+    <router-view v-if="loaded"></router-view>
 
   </div>
 </template>
@@ -137,7 +131,7 @@ export default {
 
 .loading{
   color:white;
-  font-size: 14pt;
+  font-size: 20pt;
   margin: 5mm;
 }
 .loading:after {

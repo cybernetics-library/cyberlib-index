@@ -1,7 +1,7 @@
 <template lang="html">
-<nav>
+<nav class=''>
   <div class='nav-col'>
-    <h1 class='-cyber'>Cybernetics Library</h1>
+    <h1 >Cybernetics Library</h1>
   </div>
 
   <div class='nav-col'>
@@ -83,15 +83,14 @@ export default {
 
 <style lang="css" scoped>
 
-h1.-cyber{
-  font-size: 120%;
-}
+
 
 nav{
   display: flex;
   font-size: 14pt;
   background-color: white;
   padding:5mm;
+  line-height: 1.2;
 }
 
 .nav-col{
