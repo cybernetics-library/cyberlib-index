@@ -12,10 +12,17 @@
       <h2>{{bookData.Book_ID}}</h2>
 
       <span class='-mono'>Title</span>
-      <h2 >{{bookData.Title}}</h2>
+      <h2 :class="{small : isOverflow(bookData.Title)}">{{bookData.Title}}</h2>
 
-      <span class='-mono'>Author(s)</span>
+      <template v-if='bookData.Author'>
+      <span  class='-mono'>Author(s)</span>
       <h2>{{bookData.Author}}</h2>
+      </template>
+
+      <template v-else-if='bookData.Secondary_Author'>
+      <span >Seconday Author(s)</span>
+      <h2>{{bookData.Secondary_Author}}</h2>
+      </template>
 
       <span class='-mono'>Published</span>
       <h2>{{bookData.Date}}</h2>
@@ -46,14 +53,18 @@ export default {
   components:{
     QrcodeVue
   },
-  data(){
-    return{
+  methods:{
+    isOverflow(title){
+      if (title.length > 100) {
+        return true
+      }
+      return false
     }
   },
   computed:{
     date(){
       return this.$store.getters.getDate
-    }
+    },
   },
   props:{
     bookData:{
@@ -96,6 +107,10 @@ span{
 
 .qr{
   margin-bottom: 4mm;
+}
+
+.small{
+  font-size: 10pt;
 }
 
 .tag{
