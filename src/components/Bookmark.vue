@@ -1,16 +1,14 @@
 <template lang="html">
-<router-link class='rl' :to="`/catalog/`+bookData.Book_ID">
+<router-link class='rl' :to="`/`+bookData.Book_ID">
 
   <div class='bookmark outer' :id='bookData.Book_ID' v-bind:style="{backgroundImage: 'url(' + bookData.Cover_URL + ')'}">
     <div class='inner' >
 
-      <header>
-        <h3 class='-cyber'>CYBERNETICS LIBRARY</h3>
+      <h3 class='-cyber'>CYBERNETICS LIBRARY</h3>
 
-        <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
-      </header>
+      <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
 
-      <span class='-mono'>CYLIB ID</span>
+      <span class='-mono'>https://library.trust.support/</span>
       <h2>{{bookData.Book_ID}}</h2>
 
       <span class='-mono'>Title</span>

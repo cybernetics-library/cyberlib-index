@@ -30,7 +30,7 @@ import ErrorPage from './pages/error-page.vue';
 
 const routes = [
   {
-    path: '/catalog/:id',
+    path: '/:id',
     component: BookPage,
   },{
     path: '',
