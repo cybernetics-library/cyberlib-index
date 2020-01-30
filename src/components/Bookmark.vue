@@ -120,7 +120,7 @@ span{
   border-radius: 3pt;
   border: 0.5px solid black;
   /* text-decoration: underline; */
-  margin: 0 5pt 5pt 0;
+  margin: 0 5pt 4pt 0;
   line-height: 1.5;
 }
 
