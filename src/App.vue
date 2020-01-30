@@ -83,14 +83,6 @@ export default {
           obj.Cylib_URL = 'https://library.trust.support/' + obj.Book_ID;
           // obj.Cylib_URL = 'https://localhost:8000/catalog/' + obj.Book_ID;
 
-          // const a = obj.Primary_Author.split(', ');
-          //
-          // if (a[1]) {
-          //   obj.Author = a[1] + ' ' + a[0];
-          // } else {
-          //   obj.Author = a[0];
-          // }
-
           obj.Author = obj.Primary_Author;
 
           output.push(obj);
