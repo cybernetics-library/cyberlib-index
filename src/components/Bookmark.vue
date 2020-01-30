@@ -74,16 +74,16 @@ h2{
 }
 
 h3{
-  font-size: 14pt;
+  font-size: 16.2pt;
   width: 100%;
-  text-align: left;
-  letter-spacing: 1.1pt;
+  text-align: center;
+  /* letter-spacing: 1.1pt; */
   margin-bottom: 4mm;
   position: relative;
   /* top:-3.5pt; */
   word-spacing: -0.6pt;
-  padding-bottom: 3mm;
-  border-bottom: 1px solid black;
+  /* padding-bottom: 3mm; */
+  /* border-bottom: 1px solid black; */
 
 }
 
@@ -116,10 +116,11 @@ span{
 
 .bookmark-footer{
   width: calc(100% - 10mm);
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
   position: absolute;
   bottom:4mm;
   padding-top: 2.5mm;
+  /* text-align: center; */
 }
 
 .bookmark-footer span{
