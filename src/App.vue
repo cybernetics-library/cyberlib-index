@@ -125,6 +125,7 @@ export default {
   },
   mounted(){
     this.gapiCall();
+    this.$store.dispatch('setDate');
   }
 }
 </script>

@@ -6,7 +6,8 @@ export const store = new Vuex.Store({
   state: {
     books:[],
     printGroups:[],
-    tagGroups:[]
+    tagGroups:[],
+    date:''
   },
   mutations: {
     inputBooks(state, b){
@@ -15,6 +16,15 @@ export const store = new Vuex.Store({
     inputGroups(state, g){
       state.printGroups = g.p;
       state.tagGroups = g.x;
+    },
+    inputDate(state){
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today = dd + '/' + mm + '/' + yyyy;
+
+      state.date = today
     }
   },
   getters:{
@@ -26,6 +36,9 @@ export const store = new Vuex.Store({
     },
     getPrintGroups(state){
       return state.printGroups
+    },
+    getDate(state){
+      return state.date
     }
   },
   actions:{
@@ -34,6 +47,9 @@ export const store = new Vuex.Store({
     },
     setGroups(context, g){
       context.commit('inputGroups', g);
+    },
+    setDate(context){
+      context.commit('inputDate');
     }
   }
 

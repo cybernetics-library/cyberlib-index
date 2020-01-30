@@ -54,7 +54,7 @@ export default {
   },
   computed:{
     date(){
-      return Date().slice(0,15);
+      return this.$store.getters.getDate
     }
   },
   props:{
