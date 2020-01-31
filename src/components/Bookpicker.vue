@@ -122,6 +122,18 @@ input:focus{
   color:red;
 }
 
+
+@media screen and (max-width: 450px) {
+  nav{
+    flex-direction: column;
+  }
+  .nav-col{
+    width: 100%;
+  }
+}
+
+
+
 @media print {
 
   nav{

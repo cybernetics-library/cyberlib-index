@@ -168,14 +168,33 @@ span{
   mix-blend-mode: multiply;
 }
 
-
-/* @media screen (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .bookmark{
-    margin: 0 !important;
+    /* font-size: 80% !important; */
+    /* display: inline; */
+    width: 100%;
+    margin: 0px;
+    height: 500px;
   }
-} */
+  .qr{
+    height: 70px;
+    transform-origin: top left;
+    transform: scale(0.7);
+  }
 
-
+  .qr canvas{
+    transform: scale(0.50);
+  }
+  span{
+    font-size: 5.5pt;
+  }
+  h3{
+    font-size: 9pt;
+  }
+  h2{
+    font-size: 10pt;
+  }
+}
 
 @media print {
 
@@ -183,7 +202,7 @@ span{
     margin: 5mm 0 25mm;
   }
 
-  
+
 
 
 

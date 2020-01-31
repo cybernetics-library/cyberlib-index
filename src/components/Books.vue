@@ -66,11 +66,15 @@ ol{
   /* justify-content: space-around; */
 }
 
-@media print {
-  ol{
-    /* margin-left: 10mm; */
-    /* padding: 0 10mm; */
+@media screen and (max-width: 450px) {
+  li{
+    width: calc(50% - 7.5px);
+    margin: 5px 0 0 5px;
   }
+}
+
+@media print {
+
   li:nth-of-type(4n+1){
     margin-left: 10mm !important;
   }

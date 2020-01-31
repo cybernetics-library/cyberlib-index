@@ -2,6 +2,7 @@
   <div class='checkout'>
 
       <img v-if="bookData.Cover_URL" :src='bookData.Cover_URL'/>
+      <!-- <img  src='https://lh3.googleusercontent.com/proxy/bH3JdneSGJDZqVtnqkLDLsSHZavAaJs-wlOoBVPDHFuzxXVccW82EO3y2CglAjPzGIcBOc2SIWnhXO8kzebpN-1kelS4oZuWLoKCp8RYPkiVHNSygQIVyL5eDA'/> -->
 
       <div class='info'>
         <span class='-mono'>CYLIB ID</span>
@@ -100,17 +101,44 @@ span{
   margin: 4pt 0 4pt;
 }
 .info{
+  width: 90%;
+  padding: 5%;
 
 }
 .checkout{
   position: relative;
   color:white;
   width: 100%;
-  padding: 5mm 15mm;
+  /* padding: 5mm 15mm; */
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+}
+
+@media screen and (max-width: 450px) {
+  .checkout{
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    width: auto;
+  }
+  h2{
+    padding-right: 0;
+  }
+  span{
+    padding-right: 0;
+  }
+  .info{
+    width: 90%;
+    padding: 5%;
+    overflow-x: hidden;
+  }
+  img{
+    margin: 0;
+    max-height: 300px;
+    height: 300px;
+  }
 }
 
 </style>

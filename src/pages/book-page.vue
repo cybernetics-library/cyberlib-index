@@ -49,6 +49,7 @@ export default {
 .content{
   margin: 0 auto;
   width: 800px;
+
   /* background-color: red; */
 }
 .container{
@@ -65,10 +66,14 @@ export default {
   padding: 5mm;
 }
 
-/* nested styles in bookmark component */
-.outer{
-  background-image: none !important;
+@media screen and (max-width: 450px) {
+  .container{
+    padding-top: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }
-
 
 </style>
