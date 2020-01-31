@@ -24,7 +24,7 @@
   </div>
 
   <div class='nav-col'>
-    <a href='#' @click='$parent.print()'>Print bookmarks
+    <a id='print-button' href='#' @click='$parent.print()'>Print bookmarks
       <span v-if='currentBook'> ({{currentBook.length}})</span>
       <span v-else> ({{$store.getters.getBooks.length}})</span>
 
@@ -129,6 +129,22 @@ input:focus{
   }
   .nav-col{
     width: 100%;
+  }
+  h1{
+    margin-bottom: 5mm;
+    text-align: center;
+  }
+  h1.-cyber{
+    /* font-size: 20pt; */
+  }
+  h2{
+    /* font-family: 'Plex Mono'; */
+    /* font-size: 8pt; */
+    /* letter-spacing: 0.5pt; */
+    /* text-transform: uppercase; */
+  }
+  #print-button{
+    display: none;
   }
 }
 
