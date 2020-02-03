@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     },
     inputGroups(state, g){
       state.printGroups = g.p;
-      state.tagGroups = g.x;
+      state.tagGroups = g.t;
     },
     inputDate(state){
       var today = new Date();
@@ -36,6 +36,9 @@ export const store = new Vuex.Store({
     },
     getPrintGroups(state){
       return state.printGroups
+    },
+    getTags(state){
+      return state.tagGroups
     },
     getDate(state){
       return state.date

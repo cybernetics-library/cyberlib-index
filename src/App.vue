@@ -47,8 +47,28 @@ export default {
           })
         }
       })
+
+      const tagGroups = {}
+      this.$store.getters.getBooks.forEach(function(book){
+        if (book.Tags){
+          book.Tags.forEach(function(i){
+
+            if (!tagGroups[i]){
+
+              tagGroups[i] = {
+                name : i,
+                books : []
+              }
+            }
+            tagGroups[i].books.push(+book.Book_ID);
+          })
+        }
+      })
+
+
       const payload = {
-        p: printGroups
+        p: printGroups,
+        t: tagGroups
       }
       // console.log(payload)
       this.$store.dispatch('setGroups', payload);
