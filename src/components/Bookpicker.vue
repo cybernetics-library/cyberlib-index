@@ -24,6 +24,15 @@
   </div>
 
   <div class='nav-col'>
+    <h2>Tags</h2><br>
+    <ol class='peek'>
+      <li v-for="(i, key) in tagGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
+        <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
+      </li>
+    </ol>
+  </div>
+
+  <div class='nav-col'>
     <a id='print-button' href='#' @click='$parent.print()'>Print bookmarks
       <span v-if='currentBook'> ({{currentBook.length}})</span>
       <span v-else> ({{$store.getters.getBooks.length}})</span>
@@ -59,6 +68,9 @@ export default {
     }
   },
   computed:{
+    tagGroups(){
+      return this.$store.getters.getTags
+    },
     printGroups(){
       return this.$store.getters.getPrintGroups
     },
@@ -121,6 +133,12 @@ input:focus{
 .active{
   color:red;
 }
+
+.peek{
+  height: 250px;
+  overflow: scroll;
+}
+
 
 
 @media screen and (max-width: 450px) {

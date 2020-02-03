@@ -65,7 +65,6 @@ export default {
         }
       })
 
-
       const payload = {
         p: printGroups,
         t: tagGroups
