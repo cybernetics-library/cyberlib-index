@@ -5,6 +5,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     books:[],
+    bookIDs:[],
     printGroups:[],
     tagGroups:[],
     date:'',
@@ -13,6 +14,15 @@ export const store = new Vuex.Store({
   mutations: {
     inputBooks(state, b){
       state.books = b
+
+      var ids = [];
+
+      for (var i = 0; i < b.length; i++) {
+        ids.push(b[i].Book_ID)
+      }
+
+      state.bookIDs = ids
+
     },
     inputGroups(state, g){
       state.printGroups = g.p;
@@ -37,6 +47,9 @@ export const store = new Vuex.Store({
     },
     getBooks(state){
       return state.books
+    },
+    getBookIDs(state){
+      return state.bookIDs
     },
     getPrintGroups(state){
       return state.printGroups

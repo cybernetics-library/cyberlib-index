@@ -3,7 +3,7 @@
 
   <li v-for='(b, key) in bookList' :key='key'>
       <Bookmark
-      :bookData='bookDataMask(b)'
+      :bookData='bookByID(b)'
       />
   </li>
 
@@ -26,18 +26,13 @@ export default {
     }
   },
   methods:{
-    findByID(id){
-      return this.$store.getters.getBooks.find(x => x.Book_ID === id)
-    },
-    bookDataMask(b){
-      if(this.$store.getters.getFilterData){
-        return this.findByID(b)
-      }else{
-        return b
-      }
+
+    bookByID(b){
+      return this.$store.getters.getBookByID(b)
     }
   },
   computed:{
+
     filter(){
       return this.$store.getters.getFilterData
     },
@@ -45,7 +40,7 @@ export default {
       if(this.$store.getters.getFilterData){
         return this.$store.getters.getFilterData
       }else{
-        return this.$store.getters.getBooks
+        return this.$store.getters.getBookIDs
       }
     }
 
