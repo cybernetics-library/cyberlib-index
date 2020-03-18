@@ -29,10 +29,10 @@ export default {
     Bookmark
   },
   props:{
-    filter:{
-      type:Array,
-      required:false
-    }
+    // filter:{
+    //   type:Array,
+    //   required:false
+    // }
   },
   data(){
     return{
@@ -44,6 +44,9 @@ export default {
     }
   },
   computed:{
+    filter(){
+      return this.$store.getters.getFilterData
+    },
     // Should update to v-show for large list performacne
     // https://stackoverflow.com/questions/43913454/vue-v-for-performance-is-poor
 

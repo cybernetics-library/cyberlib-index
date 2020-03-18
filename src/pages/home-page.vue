@@ -6,7 +6,7 @@
     />
 
     <Books
-      :filter='filter'
+    
     />
 
   </div>
@@ -27,24 +27,12 @@ export default {
     return{
       loaded: false,
       printGroups: null,
-      selectedCollection: null,
-      selectedBook: null,
       filter:null,
       meta:null
     }
   },
   methods:{
-    selectCollection(el){
-      this.selectedBook = null;
-      this.selectedCollection = el;
 
-    },
-    updateFilter(el){
-      this.filter = el;
-    },
-    clearFilter(){
-      this.filter = null;
-    },
     print(){
       window.print();
     }
