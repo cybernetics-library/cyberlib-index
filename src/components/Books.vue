@@ -1,21 +1,11 @@
 <template lang="html">
 <ol>
 
-  <template v-if='filter'>
-  <li v-for='(b, key) in filter' :key='key'>
+  <li v-for='(b, key) in bookList' :key='key'>
       <Bookmark
-        :bookData='findByID(b)'
+      :bookData='bookDataMask(b)'
       />
   </li>
-  </template>
-
-  <template v-else>
-  <li v-for='(b, key) in this.$store.getters.getBooks' :key='key'>
-      <Bookmark
-        :bookData='b'
-      />
-  </li>
-  </template>
 
 </ol>
 </template>
@@ -38,12 +28,27 @@ export default {
   methods:{
     findByID(id){
       return this.$store.getters.getBooks.find(x => x.Book_ID === id)
+    },
+    bookDataMask(b){
+      if(this.$store.getters.getFilterData){
+        return this.findByID(b)
+      }else{
+        return b
+      }
     }
   },
   computed:{
     filter(){
       return this.$store.getters.getFilterData
     },
+    bookList(){
+      if(this.$store.getters.getFilterData){
+        return this.$store.getters.getFilterData
+      }else{
+        return this.$store.getters.getBooks
+      }
+    }
+
     // Should update to v-show for large list performacne
     // https://stackoverflow.com/questions/43913454/vue-v-for-performance-is-poor
 
