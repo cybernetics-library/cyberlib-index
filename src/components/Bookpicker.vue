@@ -59,12 +59,15 @@ export default {
   methods:{
     select(el){
       this.currentBook = el;
-      this.$parent.updateFilter(el);
+      // this.$parent.updateFilter(el);
+      // console.log(el);
+      this.$store.dispatch('setFilter', el );
     },
     clear(){
       this.search = '';
       this.currentBook = null;
-      this.$parent.clearFilter();
+      // this.$parent.clearFilter();
+      this.$store.dispatch('setFilter', null);
     }
   },
   computed:{
@@ -76,6 +79,9 @@ export default {
     },
     library(){
       return this.$store.getters.getBooks
+    },
+    filter(){
+      return this.$store.getters.getFilterData
     },
     // Should update to v-show for large list performacne
     // https://stackoverflow.com/questions/43913454/vue-v-for-performance-is-poor
@@ -89,6 +95,9 @@ export default {
         }
       })
     }
+  },
+  mounted(){
+    this.currentBook = this.filter;
   }
 }
 </script>
