@@ -29,10 +29,7 @@ export default {
     Bookmark
   },
   props:{
-    // filter:{
-    //   type:Array,
-    //   required:false
-    // }
+
   },
   data(){
     return{
