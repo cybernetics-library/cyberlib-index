@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
     books:[],
     printGroups:[],
     tagGroups:[],
-    date:''
+    date:'',
+    currentFilter:[],
   },
   mutations: {
     inputBooks(state, b){
@@ -25,6 +26,9 @@ export const store = new Vuex.Store({
       today = dd + '/' + mm + '/' + yyyy;
 
       state.date = today
+    },
+    inputFilterData(state, filterData){
+      state.currentFilter = filterData;
     }
   },
   getters:{
@@ -42,6 +46,9 @@ export const store = new Vuex.Store({
     },
     getDate(state){
       return state.date
+    },
+    getFilterData(state){
+      return state.currentFilter
     }
   },
   actions:{
@@ -53,6 +60,9 @@ export const store = new Vuex.Store({
     },
     setDate(context){
       context.commit('inputDate');
+    },
+    setFilter(context, filterData){
+      context.commit('inputFilterData', filterData);
     }
   }
 
