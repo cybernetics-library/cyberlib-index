@@ -8,7 +8,7 @@ export const store = new Vuex.Store({
     printGroups:[],
     tagGroups:[],
     date:'',
-    currentFilter:[],
+    currentFilter:null,
   },
   mutations: {
     inputBooks(state, b){
