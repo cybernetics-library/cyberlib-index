@@ -48,26 +48,43 @@ export default {
         }
       })
 
-      const tagGroups = {}
+      const tagGroupsMap = {}
       this.$store.getters.getBooks.forEach(function(book){
         if (book.Tags){
           book.Tags.forEach(function(i){
 
-            if (!tagGroups[i]){
+            if (!tagGroupsMap[i]){
 
-              tagGroups[i] = {
+              tagGroupsMap[i] = {
                 name : i,
                 books : []
               }
             }
-            tagGroups[i].books.push(+book.Book_ID);
+            tagGroupsMap[i].books.push(+book.Book_ID);
           })
         }
       })
 
+      const tagGroupsArray = Object.values(tagGroupsMap).sort(function(a, b){
+
+
+        if(a.books.length > b.books.length) return -1;
+        if(a.books.length < b.books.length) return 1;
+        if(a.name > b.name) return 1;
+        if(a.name < b.name) return -1;
+
+
+      });
+
+
+
+      // console.log(Object.keys(tagGroupsMap).length);
+
+      // console.log({tagGroupsMap});
+
       const payload = {
         p: printGroups,
-        t: tagGroups
+        t: tagGroupsArray
       }
       // console.log(payload)
       this.$store.dispatch('setGroups', payload);
