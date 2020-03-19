@@ -28,12 +28,12 @@
     <h2 class='-cyber'>Tags</h2><br>
     <ol class='tag-scroll' :class="{'show-all': showAllTags}">
       <li v-for="(i, key) in tagGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
-        <a v-if='i.books.length > 1' href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
+        <a v-if='i.books.length > 2' href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
         <a v-else href='#' @click='select(i.books)'>{{i.name}}</a>
       </li>
     </ol>
     <small v-if='!showAllTags' @click='toggleTags'>Show more</small>
-    <small v-else @click='toggleTags'>Show less</small>
+    <small class='sticky' v-else @click='toggleTags'>Show less</small>
 
 
   </div>
@@ -157,12 +157,16 @@ nav{
 
 small{
   font-size: 0.8rem;
-  position: sticky;
-  bottom:15px;
   padding: 5px 0;
   /* width: calc(100% - 25px); */
   background-color: black;
   /* width: 100%; */
+}
+
+small.sticky{
+  position: sticky;
+  bottom:15px;
+
 }
 
 .nav-col{
@@ -218,6 +222,14 @@ input:focus{
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
+}
+
+.search-scroll li:hover{
+
+  /* white-space: normal; */
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  /* box-sizing: border-box; */
 }
 
 .search-scroll li a{
