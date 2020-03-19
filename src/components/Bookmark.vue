@@ -113,6 +113,7 @@ span{
 }
 
 .qr{
+  height: 102px;
   margin-bottom: 4mm;
 }
 
