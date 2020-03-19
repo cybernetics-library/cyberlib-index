@@ -26,12 +26,16 @@
 
   <div class='nav-col'>
     <h2 class='-cyber'>Tags</h2><br>
-    <ol class='tag-scroll'>
+    <ol class='tag-scroll' :class="{'show-all': showAllTags}">
       <li v-for="(i, key) in tagGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
-        <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
+        <a v-if='i.books.length > 1' href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
+        <a v-else href='#' @click='select(i.books)'>{{i.name}}</a>
       </li>
     </ol>
-    <small>Show more</small>
+    <small v-if='!showAllTags' @click='toggleTags'>Show more</small>
+    <small v-else @click='toggleTags'>Show less</small>
+
+
   </div>
 
   <div class='nav-col'>
@@ -58,7 +62,8 @@ export default {
   data(){
     return{
       search:'',
-      currentBook:''
+      currentBook:'',
+      showAllTags:false
     }
   },
   methods:{
@@ -73,7 +78,16 @@ export default {
       this.currentBook = null;
       // this.$parent.clearFilter();
       this.$store.dispatch('setFilter', null);
+    },
+    toggleTags(){
+        console.log('yo');
+        if(!this.showAllTags){
+          this.showAllTags = true
+        }else{
+          this.showAllTags = false
+        }
     }
+
   },
   computed:{
     tagGroups(){
@@ -143,6 +157,12 @@ nav{
 
 small{
   font-size: 0.8rem;
+  position: sticky;
+  bottom:15px;
+  padding: 5px 0;
+  /* width: calc(100% - 25px); */
+  background-color: black;
+  /* width: 100%; */
 }
 
 .nav-col{
@@ -215,16 +235,14 @@ input:focus{
 
 .tag-scroll{
   box-sizing: border-box;
-
-  /* background-color: grey; */
-  /* border-radius: 10px; */
   height: 150px;
   overflow: hidden;
-  /* padding:5mm; */
-  /* border: 1px solid white; */
-  /* padding: 7px 12px 9px; */
-
   font-size: 0.8rem;
+}
+
+.tag-scroll.show-all{
+  overflow: visible;
+  height: auto;
 }
 
 .tag-scroll li{
@@ -244,6 +262,8 @@ input:focus{
   background-color: red;
   color:black;
   padding: 5px;
+  /* position: sticky; */
+  /* bottom:5px; */
 }
 
 @media screen and (max-width: 450px) {
