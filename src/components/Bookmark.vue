@@ -6,7 +6,7 @@
 
       <h3 class='-cyber'>CYBERNETICS LIBRARY</h3>
 
-      <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
+      <qrcode-vue class='qr' v-if='this.windowDocument.defaultView.styleMedia.type == "print" ' :value="bookData.Cylib_URL"></qrcode-vue>
 
       <span class='-mono'>https://library.trust.support/</span>
       <h2>{{bookData.Book_ID}}</h2>
