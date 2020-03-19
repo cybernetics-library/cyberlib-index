@@ -16,7 +16,7 @@
   </div>
 
   <div class='nav-col'>
-    <h2 class='-cyber'>Or select group</h2><br>
+    <h2 class='-cyber'>Select group</h2><br>
     <ol class='group-scroll'>
       <li v-for="(i, key) in printGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
         <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
@@ -174,7 +174,8 @@ input:focus{
 }
 
 .active{
-  color:red;
+  color:black !important;
+  background-color: red !important;
 }
 
 .search-scroll{
