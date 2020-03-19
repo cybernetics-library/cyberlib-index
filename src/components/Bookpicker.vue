@@ -1,22 +1,23 @@
 <template lang="html">
 <nav >
-  <div class='nav-col'>
+  <!-- <div class='nav-col'>
     <h1 class='-cyber'>Cybernetics Library Index</h1>
-  </div>
+  </div> -->
 
   <div class='nav-col'>
-    <h2>Find a book </h2><br>
+    <h2 class='-cyber'>Search</h2><br>
     <input class='-sans' v-model='search' placeholder="Enter a book title or ISBN" />
-    <ol v-if='search'>
+    <ol class='search-scroll' v-if='search'>
       <li v-for="(i, key) in filteredList" :key='key' :class="{'active': currentBook==i.Book_ID, '': !currentBook==i.Book_ID  }">
         <a href='#' @click='select([i.Book_ID])'>{{i.Title}}</a>
       </li>
+      <li v-if='filteredList.length == 0 && search'>No results.</li>
     </ol>
   </div>
 
   <div class='nav-col'>
-    <h2>Or select group</h2><br>
-    <ol>
+    <h2 class='-cyber'>Or select group</h2><br>
+    <ol class='group-scroll'>
       <li v-for="(i, key) in printGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
         <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
       </li>
@@ -24,23 +25,27 @@
   </div>
 
   <div class='nav-col'>
-    <h2>Tags</h2><br>
-    <ol class='peek'>
+    <h2 class='-cyber'>Tags</h2><br>
+    <ol class='tag-scroll'>
       <li v-for="(i, key) in tagGroups" :key='key' :class="{'active': currentBook==i.books, '': !currentBook==i.books  }">
         <a href='#' @click='select(i.books)'>{{i.name}} ({{i.books.length}})</a>
       </li>
     </ol>
+    <small>Show more</small>
   </div>
 
   <div class='nav-col'>
     <a id='print-button' href='#' @click='$parent.print()'>Print bookmarks
       <span v-if='currentBook'> ({{currentBook.length}})</span>
       <span v-else> ({{$store.getters.getBooks.length}})</span>
-
-    </a><br><br>
-
-    <a href='#' v-if='currentBook' @click='clear()'>Clear filter ×</a>
+    </a>
   </div>
+
+  <div class='nav-col'>
+    <a class='clear' href='#' v-if='currentBook' @click='clear()'>Clear filter ×</a>
+  </div>
+
+
 
 </nav>
 </template>
@@ -109,33 +114,62 @@ h1.-cyber{
   text-transform: uppercase;
 }
 
+h2{
+  text-transform: uppercase;
+  /* font-size: 0.8rem; */
+  /* color:grey; */
+  /* border: 1px solid black; */
+  /* border-radius: 15px; */
+  /* padding:5px 8px 7px 8px; */
+  width: auto;
+  margin-top: 10px;
+  /* margin-bottom: 10px; */
+}
+
 nav{
+  /* width: 300px; */
+  height: 100%;
   display: flex;
-  font-size: 14pt;
-  background-color: white;
-  padding:5mm;
+  flex-direction: column;
+  /* font-size: 14pt; */
+  color:white;
+  /* background-color: white; */
+  /* padding:5mm; */
   line-height: 1.2;
+  position: fixed;
+  z-index: 9999;
+  overflow-y: scroll;
+}
+
+small{
+  font-size: 0.8rem;
 }
 
 .nav-col{
-  width: 50%;
-  padding-right: 5mm;
+  width: 300px;
+  margin: 10px 25px;
+  /* padding-right: 5mm; */
 }
 
 
 input{
-  font-size: 14pt;
-  padding: 1px 0;
-  width: 100%;
-  border:none;
-  margin-bottom: 16px;
-  border-bottom: 1px solid transparent;
+  color:white;
+  background-color: transparent;
+  border: 1px solid white;
+  font-size: 1rem;
+  /* padding: 1px 0; */
+  width: calc(100% - 25px);
+  /* border:1px solid black; */
+  padding: 7px 12px 9px;
+  /* margin-bottom: 16px; */
+  /* border-radius: 80px; */
+  /* border-bottom: 1px solid transparent; */
 
 }
 
 input:focus{
   outline: none;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
 
 }
 
@@ -143,12 +177,73 @@ input:focus{
   color:red;
 }
 
-.peek{
-  height: 250px;
+.search-scroll{
+  width: calc(100% - 25px);
+
+  padding: 7px 12px 9px;
+  max-height: 250px;
   overflow: scroll;
+  /* font-size: 0.8rem; */
+  /* padding: 7px 12px 9px; */
+
+  border: 1px solid white;
+  border-top: none;
+
 }
 
+.search-scroll li{
 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.search-scroll li a{
+}
+
+.group-scroll li{
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: whitesmoke;
+  color:black;
+}
+
+.tag-scroll{
+  box-sizing: border-box;
+
+  /* background-color: grey; */
+  /* border-radius: 10px; */
+  height: 150px;
+  overflow: hidden;
+  /* padding:5mm; */
+  /* border: 1px solid white; */
+  /* padding: 7px 12px 9px; */
+
+  font-size: 0.8rem;
+}
+
+.tag-scroll li{
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: whitesmoke;
+  color:black;
+}
+
+.tag-scroll li:hover{
+  /* border: 1px solid */
+}
+
+.clear{
+  background-color: red;
+  color:black;
+  padding: 5px;
+}
 
 @media screen and (max-width: 450px) {
   nav{

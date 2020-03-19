@@ -6,6 +6,7 @@
     />
 
     <Books
+      class='navopen'
       :printing='printing'
     />
 
@@ -53,4 +54,23 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.container{
+  /* display: flex */
+}
+
+.navopen{
+  width: calc(100% - 360px);
+  margin-left:360px;
+}
+
+@media print {
+
+  .navopen{
+    width: auto;
+    margin-left:0;
+  }
+}
+
+
 </style>
