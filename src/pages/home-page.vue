@@ -6,7 +6,7 @@
     />
 
     <Books
-    
+      :printing='printing'
     />
 
   </div>
@@ -28,15 +28,27 @@ export default {
       loaded: false,
       printGroups: null,
       filter:null,
-      meta:null
+      meta:null,
+      printing:false
     }
   },
   methods:{
 
     print(){
-      window.print();
+      this.printing = true;
+
+      this.$nextTick(function(){
+        window.print();
+      })
+
+      this.$nextTick(function(){
+        this.printing = false;
+      })
+
+
     }
-  }
+  },
+
 }
 </script>
 

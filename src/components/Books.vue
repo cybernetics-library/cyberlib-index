@@ -4,6 +4,7 @@
   <li v-for='(b, key) in bookList' :key='key'>
       <Bookmark
       :bookData='bookByID(b)'
+      :isPrint='printing'
       />
   </li>
 
@@ -19,7 +20,10 @@ export default {
     Bookmark
   },
   props:{
-
+    printing:{
+      type:Boolean,
+      required:true
+    }
   },
   data(){
     return{
@@ -29,7 +33,8 @@ export default {
 
     bookByID(b){
       return this.$store.getters.getBookByID(b)
-    }
+    },
+
   },
   computed:{
 
@@ -44,10 +49,9 @@ export default {
       }
     }
 
-    // Should update to v-show for large list performacne
-    // https://stackoverflow.com/questions/43913454/vue-v-for-performance-is-poor
-
   },
+
+
 }
 </script>
 
