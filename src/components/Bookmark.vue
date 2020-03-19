@@ -165,7 +165,7 @@ span{
   box-sizing: border-box;
   width: 65mm;
   height: 180mm;
-  margin: 5mm 10px 25mm;
+  margin: 5mm 10px 5mm;
 
 }
 .outer{
