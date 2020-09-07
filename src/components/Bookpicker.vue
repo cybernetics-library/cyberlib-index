@@ -1,9 +1,6 @@
 <template lang="html">
-<nav >
-  <!-- <div class='nav-col'>
-    <h1 class='-cyber'>Cybernetics Library Index</h1>
-  </div> -->
-
+<nav :class="{'closed': !navOpen}">
+ 
   <div class='nav-col'>
     <h2 class='-cyber'>Search</h2><br>
     <input class='-sans' v-model='search' placeholder="Enter a book title or ISBN" />
@@ -62,21 +59,29 @@
 export default {
   name: 'BookPicker',
   props:{
+    navOpen:{
+      type:Boolean,
+      required:false
+    }
   },
   data(){
     return{
       search:'',
       currentBook:'',
       showAllTags:false,
-      listView:false
+      listView:false,
     }
   },
   methods:{
     select(el){
       this.currentBook = el;
-      // this.$parent.updateFilter(el);
-      // console.log(el);
       this.$store.dispatch('setFilter', el );
+
+      var that = this;
+
+      setTimeout(function(){
+        that.$emit('closenav');
+      },300)
     },
     clear(){
       this.search = '';
@@ -93,6 +98,8 @@ export default {
         }
     },
     toggleView(view){
+        this.$emit('closenav');
+
         if(view == 'list'){
           this.$store.dispatch('setListView', true);
           this.listView = true;
@@ -100,7 +107,7 @@ export default {
           this.$store.dispatch('setListView', false);
           this.listView = false;
         }
-    }
+    },
 
   },
   computed:{
@@ -144,37 +151,27 @@ h1.-cyber{
 
 h2{
   text-transform: uppercase;
-  /* font-size: 0.8rem; */
-  /* color:grey; */
-  /* border: 1px solid black; */
-  /* border-radius: 15px; */
-  /* padding:5px 8px 7px 8px; */
   width: auto;
   margin-top: 10px;
-  /* margin-bottom: 10px; */
 }
 
 nav{
-  /* width: 300px; */
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* font-size: 14pt; */
   color:white;
-  /* background-color: white; */
-  /* padding:5mm; */
   line-height: 1.2;
   position: fixed;
-  z-index: 9999;
+  z-index: 9998;
   overflow-y: scroll;
+  transition:all 250ms ease;
 }
+
 
 small{
   font-size: 0.8rem;
   padding: 5px 0;
-  /* width: calc(100% - 25px); */
   background-color: black;
-  /* width: 100%; */
 }
 
 small.sticky{
@@ -197,20 +194,12 @@ input{
   background-color: transparent;
   border: 1px solid white;
   font-size: 1rem;
-  /* padding: 1px 0; */
   width: calc(100% - 25px);
-  /* border:1px solid black; */
   padding: 7px 12px 9px;
-  /* margin-bottom: 16px; */
-  /* border-radius: 80px; */
-  /* border-bottom: 1px solid transparent; */
-
 }
 
 input:focus{
   outline: none;
-  /* border-bottom: 1px solid black; */
-
 }
 
 .active{
@@ -224,9 +213,6 @@ input:focus{
   padding: 7px 12px 9px;
   max-height: 250px;
   overflow: scroll;
-  /* font-size: 0.8rem; */
-  /* padding: 7px 12px 9px; */
-
   border: 1px solid white;
   border-top: none;
 
@@ -238,17 +224,6 @@ input:focus{
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
-}
-
-.search-scroll li:hover{
-
-  /* white-space: normal; */
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis; */
-  /* box-sizing: border-box; */
-}
-
-.search-scroll li a{
 }
 
 .group-scroll li{
@@ -282,20 +257,12 @@ input:focus{
   color:black;
 }
 
-.tag-scroll li:hover{
-  /* border: 1px solid */
-}
-
 .clear{
-  /* background-color: ; */
-  /* color:black; */
   margin-top:1rem;
   font-size:0.8rem;
   text-transform: uppercase;
   padding: 8px;
   border:1px solid white;
-  /* position: sticky; */
-  /* bottom:5px; */
 }
 
 .toggle{
@@ -308,26 +275,27 @@ input:focus{
   color:black;
 }
 
+
 @media screen and (max-width: 450px) {
   nav{
     flex-direction: column;
+    background-color: black;
   }
+
+  nav.closed{
+    transform: translateX(-100%);
+  }
+
   .nav-col{
-    width: 100%;
+    width: calc(100vw - 50px);
   }
   h1{
     margin-bottom: 5mm;
     text-align: center;
   }
-  h1.-cyber{
-    /* font-size: 20pt; */
-  }
-  h2{
-    /* font-family: 'Plex Mono'; */
-    /* font-size: 8pt; */
-    /* letter-spacing: 0.5pt; */
-    /* text-transform: uppercase; */
-  }
+
+  
+
   #print-button{
     display: none;
   }

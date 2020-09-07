@@ -73,4 +73,29 @@ export default {
 a{
   border-color: white;
 }
+
+@media screen and (max-width: 450px) {
+  .list-outer{
+    font-size:0.7rem;
+    margin-bottom:0.5rem;
+  }
+
+  .col{
+    padding-bottom: 0.5rem;
+    overflow:visible;
+    white-space: normal;
+  }
+
+  .col:nth-of-type(1){
+    width:40%;
+  }
+
+  .col:nth-of-type(2){
+    width:35%;
+  }
+
+  .col:nth-of-type(3){
+    /* display:none; */
+  }
+}
 </style>

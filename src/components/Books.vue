@@ -10,6 +10,7 @@
 </ol>
 
 <ol v-else class='list-view'>
+  
   <li  v-for='(b, key) in bookList' :key='key'>
       <BookListItem
       :bookData='bookByID(b)'
@@ -96,6 +97,16 @@ ol.list-view{
     width: calc(50% - 7.5px);
     margin: 5px 0 0 5px;
   }
+
+  ol.list-view li{
+    margin:0;
+  }
+
+  ol.list-view{
+  width:calc(100% - 2rem);
+  margin:0 1rem;
+  padding:1rem 0;
+}
 }
 
 @media print {
