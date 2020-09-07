@@ -94,8 +94,5 @@ a{
     width:35%;
   }
 
-  .col:nth-of-type(3){
-    /* display:none; */
-  }
 }
 </style>

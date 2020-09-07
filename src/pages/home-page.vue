@@ -75,10 +75,6 @@ export default {
 
 <style lang="css" scoped>
 
-.container{
-  /* display: flex */
-}
-
 .navopen{
   width: calc(100% - 360px);
   margin-left:360px;
