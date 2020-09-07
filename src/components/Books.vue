@@ -1,23 +1,33 @@
 <template lang="html">
-<ol>
-
-  <li v-for='(b, key) in bookList' :key='key'>
+<div>
+<ol v-if="!listView" class='bookmark-view'>
+  <li  v-for='(b, key) in bookList' :key='key'>
       <Bookmark
       :bookData='bookByID(b)'
       :isPrint='printing'
       />
   </li>
-
 </ol>
+
+<ol v-else class='list-view'>
+  <li  v-for='(b, key) in bookList' :key='key'>
+      <BookListItem
+      :bookData='bookByID(b)'
+      />
+  </li>
+</ol>
+</div>
 </template>
 
 <script>
 import Bookmark from './Bookmark.vue'
+import BookListItem from './Book-list.vue'
 
 export default {
   name: 'Books',
   components:{
-    Bookmark
+    Bookmark,
+    BookListItem
   },
   props:{
     printing:{
@@ -47,7 +57,10 @@ export default {
       }else{
         return this.$store.getters.getBookIDs
       }
-    }
+    },
+    listView(){
+      return this.$store.getters.getListView
+    },
 
   },
 
@@ -63,11 +76,19 @@ li{
   list-style-type: none;
 }
 ol{
-  /* background-color: black; */
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
+}
+
+ol.list-view li{
+  width:100%;
+}
+
+ol.list-view{
+  width:calc(100% - 4rem);
+  margin:0 2rem;
+  padding:2rem 0;
 }
 
 @media screen and (max-width: 450px) {

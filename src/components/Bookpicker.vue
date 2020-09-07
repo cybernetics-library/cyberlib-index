@@ -34,8 +34,12 @@
     </ol>
     <small v-if='!showAllTags' @click='toggleTags'>Show more</small>
     <small class='sticky' v-else @click='toggleTags'>Show less</small>
+  </div>
 
-
+  <div class='nav-col'>
+    <h2 class='-cyber'>View</h2><br>
+    <a  class='toggle' href='#' @click="toggleView('bookmark')" :class="{'active': !listView}">Bookmark view</a>
+    <a  class='toggle' href='#' @click="toggleView('list')" :class="{'active': listView}">List view</a>
   </div>
 
   <div class='nav-col'>
@@ -46,7 +50,7 @@
   </div>
 
   <div class='nav-col'>
-    <a class='clear' href='#' v-if='currentBook' @click='clear()'>Clear filter ×</a>
+    <a class='clear -mono' href='#' v-if='currentBook' @click='clear()'>Clear filter ×</a>
   </div>
 
 
@@ -63,7 +67,8 @@ export default {
     return{
       search:'',
       currentBook:'',
-      showAllTags:false
+      showAllTags:false,
+      listView:true
     }
   },
   methods:{
@@ -85,6 +90,15 @@ export default {
           this.showAllTags = true
         }else{
           this.showAllTags = false
+        }
+    },
+    toggleView(view){
+        if(view == 'list'){
+          this.$store.dispatch('setListView', true);
+          this.listView = true;
+        }else{
+          this.$store.dispatch('setListView', false);
+          this.listView = false;
         }
     }
 
@@ -166,6 +180,8 @@ small{
 small.sticky{
   position: sticky;
   bottom:15px;
+  padding:5px;
+  cursor: pointer;
 
 }
 
@@ -199,7 +215,7 @@ input:focus{
 
 .active{
   color:black !important;
-  background-color: red !important;
+  background-color: grey !important;
 }
 
 .search-scroll{
@@ -271,11 +287,25 @@ input:focus{
 }
 
 .clear{
-  background-color: red;
-  color:black;
-  padding: 5px;
+  /* background-color: ; */
+  /* color:black; */
+  margin-top:1rem;
+  font-size:0.8rem;
+  text-transform: uppercase;
+  padding: 8px;
+  border:1px solid white;
   /* position: sticky; */
   /* bottom:5px; */
+}
+
+.toggle{
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: whitesmoke;
+  color:black;
 }
 
 @media screen and (max-width: 450px) {

@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
     tagGroups:[],
     date:'',
     currentFilter:null,
+    listView:true
   },
   mutations: {
     inputBooks(state, b){
@@ -39,6 +40,9 @@ export const store = new Vuex.Store({
     },
     inputFilterData(state, filterData){
       state.currentFilter = filterData;
+    },
+    inputListView(state, isListView){
+      state.listView = isListView
     }
   },
   getters:{
@@ -62,6 +66,9 @@ export const store = new Vuex.Store({
     },
     getFilterData(state){
       return state.currentFilter
+    },
+    getListView(state){
+      return state.listView
     }
   },
   actions:{
@@ -76,6 +83,9 @@ export const store = new Vuex.Store({
     },
     setFilter(context, filterData){
       context.commit('inputFilterData', filterData);
+    },
+    setListView(context, isListView){
+      context.commit('inputListView', isListView)
     }
   }
 
