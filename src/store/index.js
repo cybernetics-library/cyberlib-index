@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
     tagGroups:[],
     date:'',
     currentFilter:null,
-    listView:true
+    listView:false
   },
   mutations: {
     inputBooks(state, b){

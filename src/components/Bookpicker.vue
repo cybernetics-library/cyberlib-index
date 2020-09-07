@@ -68,7 +68,7 @@ export default {
       search:'',
       currentBook:'',
       showAllTags:false,
-      listView:true
+      listView:false
     }
   },
   methods:{
