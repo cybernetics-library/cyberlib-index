@@ -31,6 +31,12 @@
         <span class='-mono' v-if='bookData.From_Where'>From</span>
         <h2 class='-cyber'>{{bookData.From_Where}}</h2>
 
+        <span class='-mono'>Other Resources</span>
+        <h2 class=' -cyber'>
+        <a :href="'https://aaaaarg.fail/search?query=' + bookData.Title" target="_blank">aaaaarg</a>&nbsp;
+        <a :href="'http://libgen.rs/search.php?req=' + bookData.Title + '&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def'" target="_blank">Libgen</a>
+        </h2>
+
         <footer class='checkout-footer -mono'>
           <span>CYBERNETICS LIBRARY {{bookData.Book_ID}}</span>
         </footer>
