@@ -6,7 +6,8 @@
 
       <h3 class='-cyber'>CYBERNETICS LIBRARY</h3>
 
-      <qrcode-vue class='qr' :value="bookData.Cylib_URL"></qrcode-vue>
+      <qrcode-vue class='qr' v-if='isPrint' :value="bookData.Cylib_URL"></qrcode-vue>
+      <div class='qr' v-else><img  src='../assets/qrplaceholder.png'  /></div>
 
       <span class='-mono'>https://library.trust.support/</span>
       <h2>{{bookData.Book_ID}}</h2>
@@ -53,6 +54,16 @@ export default {
   components:{
     QrcodeVue
   },
+  props:{
+    bookData:{
+      type:Object,
+      required:true
+    },
+    isPrint:{
+      type:Boolean,
+      required:true
+    }
+  },
   methods:{
     isOverflow(title){
       if (title.length > 100) {
@@ -66,12 +77,8 @@ export default {
       return this.$store.getters.getDate
     },
   },
-  props:{
-    bookData:{
-      type:Object,
-      required:true
-    }
-  }
+
+
 }
 </script>
 
@@ -106,7 +113,12 @@ span{
 }
 
 .qr{
+  height: 102px;
   margin-bottom: 4mm;
+}
+
+.qr img{
+  width: 100px;
 }
 
 .small{
@@ -153,7 +165,7 @@ span{
   box-sizing: border-box;
   width: 65mm;
   height: 180mm;
-  margin: 5mm 4mm 25mm;
+  margin: 5mm 10px 5mm;
 
 }
 .outer{
@@ -201,12 +213,6 @@ span{
   .bookmark{
     margin: 5mm 0 25mm;
   }
-
-
-
-
-
-
 
   .outer::before{
     position: absolute;

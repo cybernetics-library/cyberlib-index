@@ -1,9 +1,34 @@
 <template>
   <div id="app">
-    <p v-if="!loaded" class='loading -cyber'>Loading library</p>
+    <div v-if="!loaded" class='loading-screen'>
+      <div class='loading-inner'>
+        <h1 class='-cyber animate'>
+          <span>C</span>
+          <span>Y</span>
+          <span>B</span>
+          <span>E</span>
+          <span>R</span>
+          <span>N</span>
+          <span>E</span>
+          <span>T</span>
+          <span>I</span>
+          <span>C</span>
+          <span>S </span>
+          <span>L</span>
+          <span>I</span>
+          <span>B</span>
+          <span>R</span>
+          <span>A</span>
+          <span>R</span>
+          <span>Y</span>
+        </h1>
+        <!-- <p v-if="!loaded" class='loading -mono'>Loading library</p> -->
+      </div>
+    </div>
 
+    <transition name="fade">
     <router-view v-if="loaded"></router-view>
-
+    </transition>
   </div>
 </template>
 
@@ -48,26 +73,43 @@ export default {
         }
       })
 
-      const tagGroups = {}
+      const tagGroupsMap = {}
       this.$store.getters.getBooks.forEach(function(book){
         if (book.Tags){
           book.Tags.forEach(function(i){
 
-            if (!tagGroups[i]){
+            if (!tagGroupsMap[i]){
 
-              tagGroups[i] = {
+              tagGroupsMap[i] = {
                 name : i,
                 books : []
               }
             }
-            tagGroups[i].books.push(+book.Book_ID);
+            tagGroupsMap[i].books.push(+book.Book_ID);
           })
         }
       })
 
+      const tagGroupsArray = Object.values(tagGroupsMap).sort(function(a, b){
+
+
+        if(a.books.length > b.books.length) return -1;
+        if(a.books.length < b.books.length) return 1;
+        if(a.name > b.name) return 1;
+        if(a.name < b.name) return -1;
+
+
+      });
+
+
+
+      // console.log(Object.keys(tagGroupsMap).length);
+
+      // console.log({tagGroupsMap});
+
       const payload = {
         p: printGroups,
-        t: tagGroups
+        t: tagGroupsArray
       }
       // console.log(payload)
       this.$store.dispatch('setGroups', payload);
@@ -146,11 +188,14 @@ export default {
 @import url("./assets/css/reset.css");
 @import url("./assets/css/fonts.css");
 @import url("./assets/css/main.css");
+@import url("./assets/css/animation.css");
 
 .loading{
   color:white;
-  font-size: 20pt;
-  margin: 5mm;
+  font-size: 10pt;
+  /* margin: 5mm; */
+  width: 100%;
+  text-align: center;
 }
 .loading:after {
   overflow: hidden;
@@ -160,6 +205,28 @@ export default {
   animation: ellipsis steps(4,end) 900ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
+}
+
+.loading-screen{
+  height: 100vh;
+  width: 100%;
+  display: flex;  
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+h1 span {
+    opacity: 0.5;
+    animation: introanim 1s forwards;
+    animation-iteration-count:infinite;
+}
+
+h1{
+  color:white;
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
 }
 
 .app-footer{

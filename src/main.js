@@ -46,6 +46,10 @@ const router = new VueRouter({
   routes: routes
 });
 
+//window ref
+Vue.prototype.windowDocument = window.document;
+Vue.prototype.window = window;
+
 Vue.config.productionTip = false
 
 new Vue({
