@@ -167,7 +167,7 @@ nav{
   line-height: 1.2;
   position: fixed;
   z-index: 9998;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition:all 250ms ease;
 }
 
