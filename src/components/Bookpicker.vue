@@ -141,6 +141,7 @@ export default {
     }
   },
   mounted(){
+    this.listView = this.$store.getters.getListView;
     this.currentBook = this.filter;
   }
 }
