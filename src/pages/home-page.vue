@@ -1,6 +1,7 @@
 <template lang="html">
   <div class='container'>
     <div class='mob-menu' @click="toggleNav">{{navText}}</div>
+    <div class='mob-clear' v-if="filterData" @click="clearFilter">Clear filters ×</div>
 
     <BookPicker
       id='bookpicker'
@@ -55,6 +56,10 @@ export default {
         this.navText = "Menu =";
     },
 
+    clearFilter(){
+      this.$store.dispatch('setFilter', null);
+    },
+
     print(){
       this.printing = true;
 
@@ -70,6 +75,12 @@ export default {
     }
   },
 
+  computed:{
+    filterData(){
+      return this.$store.getters.getFilterData
+    },
+  }
+
 }
 </script>
 
@@ -81,6 +92,9 @@ export default {
 }
 
 .mob-menu{
+  display: none;
+}
+.mob-clear{
   display: none;
 }
 
@@ -95,6 +109,20 @@ export default {
     position: fixed;
     right:18px;
     top:18px;
+    display: block;
+    border: 1px solid white;
+    background: black;
+    padding: 3px 5px 4px 5px;
+    border-radius: 2px;
+    z-index: 9999;
+    color:white;
+  }
+
+  .mob-clear{
+    font-size: 0.9rem;
+    position: fixed;
+    right:18px;
+    bottom:18px;
     display: block;
     border: 1px solid white;
     background: black;
