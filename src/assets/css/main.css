@@ -16,6 +16,14 @@ html{
 
 }
 
+::-moz-selection { 
+  color:black;
+  background: grey; 
+}
+::selection { 
+  color:black;
+  background: grey; 
+}
 
 
 a{

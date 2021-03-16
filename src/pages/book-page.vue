@@ -72,10 +72,10 @@ export default {
 
 .bg{
   position: fixed;
-  bottom:0;
-  right: 0;
-  left: 0;
-  top: 0;
+  bottom:-25px;
+  right: -25px;
+  left: -25px;
+  top: -25px;
   z-index: -999;  
   -webkit-filter: blur(25px);
   background-repeat: no-repeat;
