@@ -5,7 +5,7 @@
     </div>
 
     <router-link class='back' to="/">↩</router-link>
-
+    <div class='bg' :style="{backgroundImage: 'url(http://covers.openlibrary.org/b/isbn/' + currentBook.ISBN + '-L.jpg)'}"></div>
   </div>
 </template>
 
@@ -41,6 +41,15 @@ export default {
         this.errorState = true
       }
     }
+  },
+  metaInfo () {
+    return {
+      title: this.currentBook ? this.currentBook.Author + ': ' + this.currentBook.Title : 'Cybernetics Library Index',
+      meta: [
+      { property:'og:title', 'content': this.currentBook ? this.currentBook.Title : 'Cybernetics Library Index', 'data-vue-meta':"true", hid: 'og:title'},
+      { property:'og:image', 'content': this.currentBook.ISBN ? 'http://covers.openlibrary.org/b/isbn/' + this.currentBook.ISBN + '-L.jpg' : 'empty' , 'data-vue-meta':"true", hid: 'og:image'},
+      ]
+    }
   }
 }
 </script>
@@ -57,7 +66,23 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  /* background: red; */
 }
+
+.bg{
+  position: fixed;
+  bottom:0;
+  right: 0;
+  left: 0;
+  top: 0;
+  background-color: green;
+  z-index: -999;  
+  -webkit-filter: blur(25px);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .back{
   position: fixed;
   top:0;
