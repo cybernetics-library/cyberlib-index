@@ -76,11 +76,11 @@ export default {
   right: 0;
   left: 0;
   top: 0;
-  background-color: green;
   z-index: -999;  
   -webkit-filter: blur(25px);
   background-repeat: no-repeat;
   background-size: cover;
+  opacity: 0.85;
 }
 
 .back{
